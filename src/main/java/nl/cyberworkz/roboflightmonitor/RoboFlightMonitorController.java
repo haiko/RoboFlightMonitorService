@@ -29,8 +29,14 @@ public class RoboFlightMonitorController {
 	@RequestMapping(method=RequestMethod.GET, value="${id}")
 	public ResponseEntity<FlightStatus> getFlightStatus(@PathVariable String id) {
 		
+		LOG.debug("flight:" + id);
 		
 		return new ResponseEntity<FlightStatus> (new FlightStatus(), HttpStatus.OK);
 		
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<String> testCall() {
+		return new ResponseEntity<String>("test ok", HttpStatus.OK);
 	}
 }

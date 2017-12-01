@@ -26,6 +26,7 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: any
+            
   ConfigLambdaPermission:
     Type: "AWS::Lambda::Permission"
     DependsOn:
