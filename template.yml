@@ -6,7 +6,7 @@ Transform:
 Parameters:
   ProjectId:
     Type: String
-    Description: AWS CodeStar projectID used to associate new resources to team members
+    Description: RoboFlightMonitorService as Lambda.
 
 Resources:
   RoboFlightMonitorAPI:
