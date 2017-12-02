@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.cyberworkz.roboflightmonitor.domain.Flight;
+import nl.cyberworkz.roboflightmonitor.domain.FlightStatus;
+
 /**
  * Handles incoming requests
  * 
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping(value="/flightstatus")
+@RequestMapping(value="/flights")
 public class RoboFlightMonitorController {
 
 	
@@ -26,12 +29,12 @@ public class RoboFlightMonitorController {
 	@Autowired
 	private RoboFlightMonitorService service;
 	
-	@RequestMapping(method=RequestMethod.GET, value="${id}")
+	@RequestMapping(method=RequestMethod.GET, value="{id}/status")
 	public ResponseEntity<FlightStatus> getFlightStatus(@PathVariable String id) {
 		
 		LOG.debug("flight:" + id);
 		
-		return new ResponseEntity<FlightStatus> (new FlightStatus(), HttpStatus.OK);
+		return new ResponseEntity<FlightStatus> (new FlightStatus("test status ok"), HttpStatus.OK);
 		
 	}
 	
