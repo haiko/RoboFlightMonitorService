@@ -39,7 +39,7 @@ import nl.cyberworkz.roboflightmonitor.domain.Flight;
 @ContextConfiguration(classes = { ApplicationConfig.class, IntegrationTestConfig.class })
 @WebAppConfiguration
 @TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class })
-@TestPropertySource("classpath:application-test.properties")
+@TestPropertySource("classpath:application.properties")
 public class RoboFlightMonitorIntegrationTest {
 
 	@Autowired

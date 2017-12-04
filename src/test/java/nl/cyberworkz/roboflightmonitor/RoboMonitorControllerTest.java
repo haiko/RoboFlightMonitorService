@@ -31,7 +31,7 @@ import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ApplicationConfig.class })
 @WebAppConfiguration
-@TestPropertySource("classpath:application-test.properties")
+@TestPropertySource("classpath:application.properties")
 public class RoboMonitorControllerTest {
 	
 	@InjectMocks
