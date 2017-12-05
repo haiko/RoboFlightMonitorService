@@ -66,7 +66,7 @@ public class RoboFlightMonitorService {
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
 
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
-				.queryParam("app_key", apiKey).queryParam("flightDirection", FlightDirection.ARRIVING.getDirection())
+				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
 				.queryParam("scheduletime", new DateTime().toString("HH:mm"))
 				.build().toUri();
