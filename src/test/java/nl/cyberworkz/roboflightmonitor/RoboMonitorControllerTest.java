@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
+import nl.cyberworkz.roboflightmonitor.exceptions.NotFoundException;
 
 /**
  * @author haiko
@@ -60,7 +61,15 @@ public class RoboMonitorControllerTest {
 		controller.getCurrentArrivingFlights(9);
 		
 		//verify
-		verify(service).getFlights(9);
+		verify(service).getArrivingFlights(9);
+	}
+	
+	@Test
+	public void shouldPassFlightId() throws NotFoundException {
+		controller.getFlight(1234L);
+		
+		//verify
+		verify(service).getFlight(Long.valueOf(1234));
 	}
 
 }

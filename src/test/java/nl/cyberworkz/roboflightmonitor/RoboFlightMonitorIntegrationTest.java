@@ -54,7 +54,7 @@ public class RoboFlightMonitorIntegrationTest {
 	protected SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
 
 	@Test
-	public void shouldTestCall() throws IOException {
+	public void shouldGetFlights() throws IOException {
 		// when
 		AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
 				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
@@ -71,6 +71,39 @@ public class RoboFlightMonitorIntegrationTest {
 		
 		// test for self-link
 		assertEquals("self", flights[0].getLinks().get(0).getRel());
+	}
+	
+	@Test
+	public void shouldGetSpecificFlight() throws IOException {
+		// when
+		AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
+				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
+		AwsProxyResponse response = handler.proxy(request, lambdaContext);
+
+		// then
+		assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+		response = handler.proxy(request, lambdaContext);
+		String responseBody = response.getBody().toString();
+		
+		Flight[] flights= mapper.readValue(responseBody, Flight[].class);
+		assertNotNull(flights);
+		
+		// get ID
+		Long flightId = flights[0].getFlightId();
+		
+		String path = "/flights/" + flightId.toString();
+		
+		AwsProxyRequest requestForFlight = new AwsProxyRequestBuilder(path, "GET")
+				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
+		AwsProxyResponse responseForFlight = handler.proxy(requestForFlight, lambdaContext);
+
+		assertNotNull(responseForFlight.getBody());
+		
+		Flight testFlight = mapper.readValue(responseForFlight.getBody(), Flight.class);
+		assertNotNull(testFlight);
+		assertEquals(flightId, testFlight.getFlightId());
+		 
 	}
 
 }

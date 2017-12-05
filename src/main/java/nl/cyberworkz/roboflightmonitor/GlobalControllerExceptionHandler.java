@@ -8,13 +8,14 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import nl.cyberworkz.roboflightmonitor.exceptions.ErrorResponse;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class GlobalControllerExceptionHandler {
     private static final Logger LOG = LogManager.getLogger(GlobalControllerExceptionHandler.class);
 

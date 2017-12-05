@@ -3,7 +3,7 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,10 +52,15 @@ public class RoboFlightMonitorServiceTest {
 	 */
 	@Test
 	public void testGetFlights() throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-		List<Flight> flights = service.getFlights(0);
+		List<Flight> flights = service.getArrivingFlights(0);
 		
 		assertTrue(!flights.isEmpty());
-	
+		
+		//get a flight and validate non null fields
+		Flight flight = flights.get(3);
+		assertNotNull(flight.getFlightId());
+		assertNotNull(flight.getFlightName());
+		assertNotNull(flight.getScheduledDate());	
 	}
 
 }

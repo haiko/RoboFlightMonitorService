@@ -1,8 +1,5 @@
 package nl.cyberworkz.roboflightmonitor.domain;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import org.joda.time.DateTime;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -18,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Flight extends ResourceSupport{
 
 	@JsonProperty("id")
-	private String flightId;
+	private Long flightId;
 	
 	private String flightName;
 
@@ -26,10 +23,10 @@ public class Flight extends ResourceSupport{
 	private FlightDirection flightDirection;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate scheduledDate;
+	private DateTime scheduleDate;
 
 	@JsonFormat(pattern = "HH:mm:ss")
-	private LocalTime scheduleTime;
+	private DateTime scheduleTime;
 
 	private String flightNumber;
 
@@ -48,15 +45,7 @@ public class Flight extends ResourceSupport{
 	
 	@JsonProperty("publicFlightState")
 	private FlightState flightState;
-
-
-	public String getFlightNamen() {
-		return flightName;
-	}
-
-	public void setFlightNamen(String flightNamen) {
-		this.flightName = flightNamen;
-	}
+	
 
 	public FlightDirection getFlightDirection() {
 		return flightDirection;
@@ -83,19 +72,19 @@ public class Flight extends ResourceSupport{
 		this.iataCode = iataCode;
 	}
 
-	public LocalDate getScheduledDate() {
-		return scheduledDate;
+	public DateTime getScheduledDate() {
+		return scheduleDate;
 	}
 
-	public void setScheduledDate(LocalDate scheduledDate) {
-		this.scheduledDate = scheduledDate;
+	public void setScheduledDate(DateTime scheduledDate) {
+		this.scheduleDate = scheduledDate;
 	}
 
-	public LocalTime getScheduleTime() {
+	public DateTime getScheduleTime() {
 		return scheduleTime;
 	}
 
-	public void setScheduleTime(LocalTime scheduleTime) {
+	public void setScheduleTime(DateTime scheduleTime) {
 		this.scheduleTime = scheduleTime;
 	}
 
@@ -147,11 +136,11 @@ public class Flight extends ResourceSupport{
 		this.flightState = flightState;
 	}
 
-	public String getFlightId() {
+	public Long getFlightId() {
 		return flightId;
 	}
 
-	public void setFlightId(String flightId) {
+	public void setFlightId(Long flightId) {
 		this.flightId = flightId;
 	}	
 }
