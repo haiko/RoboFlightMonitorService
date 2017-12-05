@@ -8,8 +8,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,6 @@ public class RoboFlightMonitorIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 
-	private Logger LOG = LogManager.getLogger(RoboFlightMonitorIntegrationTest.class);
 
 	@Autowired
 	protected SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;

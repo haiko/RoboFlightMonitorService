@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -42,7 +42,7 @@ import nl.cyberworkz.roboflightmonitor.exceptions.NotFoundException;
 @Service
 public class RoboFlightMonitorService {
 
-	private static final Logger LOG = LogManager.getLogger(RoboFlightMonitorService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RoboFlightMonitorService.class);
 
 	@Value("${RFM_APP_KEY}")
 	private String apiKey;

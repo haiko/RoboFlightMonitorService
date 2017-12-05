@@ -3,8 +3,8 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyRequest;
@@ -19,7 +19,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
  */
 public class LambdaHandler implements RequestHandler<AwsProxyRequest, AwsProxyResponse> {
     private SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
-    private static final Logger log = LogManager.getLogger(LambdaHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(LambdaHandler.class);
 
     public AwsProxyResponse handleRequest(AwsProxyRequest awsProxyRequest, Context context) {
         if (handler == null) {
