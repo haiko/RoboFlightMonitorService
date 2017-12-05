@@ -69,6 +69,7 @@ public class RoboFlightMonitorService {
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
 				.queryParam("scheduletime", new DateTime().toString("HH:mm"))
+				.queryParam("sort", "+scheduletime")
 				.build().toUri();
 		
 		LOG.debug("URI:" + uri.toString());
@@ -84,6 +85,8 @@ public class RoboFlightMonitorService {
 			flights.stream().forEach((flight) -> {
 				flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
 			});
+			
+		
 
 			return flights;
 		} else {
