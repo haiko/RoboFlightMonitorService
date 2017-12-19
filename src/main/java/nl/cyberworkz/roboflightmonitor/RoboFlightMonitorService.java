@@ -7,13 +7,16 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,7 +32,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
 import nl.cyberworkz.roboflightmonitor.domain.FlightDirection;
-import nl.cyberworkz.roboflightmonitor.domain.FlightsResponse;
+import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
+import nl.cyberworkz.roboflightmonitor.domain.SchipholFlightsResponse;
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 import nl.cyberworkz.roboflightmonitor.exceptions.NotFoundException;
 
@@ -58,11 +62,14 @@ public class RoboFlightMonitorService {
 
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private DestinationRepository destinationRepo;
 
 	@Autowired
 	private ObjectMapper mapper;
 
-	public List<Flight> getArrivingFlights(int page)
+	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
 
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
@@ -81,20 +88,41 @@ public class RoboFlightMonitorService {
 		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
-			List<Flight> flights = mapper.readValue(responseEntity.getBody(), FlightsResponse.class).getFlights();
+			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights();
+			 
+			// get some more
+			Map<String, String> links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
+			String nextUrl = links.get("next");
+			responseEntity = restTemplate.exchange(nextUrl, HttpMethod.GET, entity, String.class);
+			
+			flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
 			flights.stream().forEach((flight) -> {
 				flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
+				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
 			});
 			
-		
+			
+			// get links for response
+			links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
+			nextUrl = links.get("next");
+			
+			String previousUrl = links.get("prev");
 
-			return flights;
+			
+			FlightResponse response = new FlightResponse();
+			response.setArrivingFlights(flights);
+			response.setNextLink(SchipholAPIUtils.stripCredentialsFromLink(nextUrl));
+			response.setPreviousLink(SchipholAPIUtils.stripCredentialsFromLink(previousUrl));
+			
+			return response;
 		} else {
 			LOG.error("request to airport API failed with code " + responseEntity.getStatusCodeValue());
 			LOG.error("reason:" + responseEntity.getStatusCode().getReasonPhrase());
 			throw new BadRequestException("failed API call with code " + responseEntity.getStatusCodeValue());
 		}
 	}
+
+	
 
 	/**
 	 * Get Flight for given id.

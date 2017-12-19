@@ -29,12 +29,22 @@ public class Flight extends ResourceSupport{
 	private DateTime scheduleTime;
 
 	private String flightNumber;
+	
+	private Route route;
 
 	@JsonProperty(value="prefixIATA")
 	private String iataCode;
 
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime estimatedLandingTime;
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime actualLandingTime;
@@ -43,6 +53,17 @@ public class Flight extends ResourceSupport{
 	
 	private String gate;
 	
+	private Destination origin;
+
+	
+	public Destination getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Destination origin) {
+		this.origin = origin;
+	}
+
 	@JsonProperty("publicFlightState")
 	private FlightState flightState;
 	

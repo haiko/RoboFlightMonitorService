@@ -22,6 +22,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -80,5 +84,17 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoggingInterceptor());
+    }
+    
+    @Bean
+    public AmazonDynamoDB createDynamoDBClient() {
+    	AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClient.builder();
+    	builder.setRegion(com.amazonaws.regions.Regions.EU_CENTRAL_1.getName());
+    	
+    	ClientConfiguration clientConfiguration = new ClientConfiguration();
+    	// timeout of 5 seconds
+    	clientConfiguration.setClientExecutionTimeout(5*1000);
+    	builder.setClientConfiguration(clientConfiguration);
+    	return builder.build();
     }
 }

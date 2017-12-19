@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
+import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 import nl.cyberworkz.roboflightmonitor.exceptions.NotFoundException;
 
@@ -48,15 +49,15 @@ public class RoboFlightMonitorController {
 	 * @throws IOException
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Flight>> getCurrentArrivingFlights(@RequestParam(defaultValue = "0") int page)
+	public ResponseEntity<FlightResponse> getCurrentArrivingFlights(@RequestParam(defaultValue = "0") int page)
 			throws JsonParseException, JsonMappingException, BadRequestException, IOException {
 
 		if (page > 20) {
 			throw new BadRequestException("page param is invalid!");
 		}
 
-		List<Flight> flights = service.getArrivingFlights(page);
-		return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
+		FlightResponse flightResponse = service.getArrivingFlights(page);
+		return new ResponseEntity<FlightResponse>(flightResponse, HttpStatus.OK);
 	}
 
 	/**

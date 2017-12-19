@@ -6,10 +6,12 @@ package nl.cyberworkz.roboflightmonitor.domain;
 import java.util.List;
 
 /**
+ * Response from Schiphol API.
+ * 
  * @author haiko
  *
  */
-public class FlightsResponse {
+public class SchipholFlightsResponse {
 	
 	private List<Flight> flights;
 	

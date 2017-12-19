@@ -3,7 +3,8 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -21,6 +24,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
+import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 
 /**
@@ -32,6 +36,8 @@ import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 @WebAppConfiguration
 @TestPropertySource("classpath:application.properties")
 public class RoboFlightMonitorServiceTest {
+	
+	private static Logger LOG = LoggerFactory.getLogger(RoboFlightMonitorServiceTest.class);
 	
 	@Autowired
 	private RoboFlightMonitorService service;
@@ -52,15 +58,21 @@ public class RoboFlightMonitorServiceTest {
 	 */
 	@Test
 	public void testGetFlights() throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-		List<Flight> flights = service.getArrivingFlights(0);
+		FlightResponse response = service.getArrivingFlights(0);
 		
-		assertTrue(!flights.isEmpty());
+		assertTrue(!response.getArrivingFlights().isEmpty());
 		
 		//get a flight and validate non null fields
-		Flight flight = flights.get(3);
+		Flight flight = response.getArrivingFlights().get(3);
 		assertNotNull(flight.getFlightId());
 		assertNotNull(flight.getFlightName());
 		assertNotNull(flight.getScheduledDate());	
+		
+		List<Flight> flights = response.getArrivingFlights();
+		
+		for (Flight aFlight : flights) {
+			LOG.debug("time: " + aFlight.getScheduleTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+		}
 	}
 
 }
