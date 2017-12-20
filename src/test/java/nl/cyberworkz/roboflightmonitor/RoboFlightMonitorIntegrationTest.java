@@ -28,6 +28,7 @@ import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
+import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 
 /**
  * @author haiko
@@ -63,11 +64,11 @@ public class RoboFlightMonitorIntegrationTest {
 		response = handler.proxy(request, lambdaContext);
 		String responseBody = response.getBody().toString();
 		
-		Flight[] flights= mapper.readValue(responseBody, Flight[].class);
-		assertNotNull(flights);
+		FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
+		assertNotNull(flightResponse.getArrivingFlights());
 		
 		// test for self-link
-		assertEquals("self", flights[0].getLinks().get(0).getRel());
+		//assertEquals("self", flightResponse.getArrivingFlights().get(0).getLinks().get(0).getRel());
 	}
 	
 	@Test
@@ -83,11 +84,11 @@ public class RoboFlightMonitorIntegrationTest {
 		response = handler.proxy(request, lambdaContext);
 		String responseBody = response.getBody().toString();
 		
-		Flight[] flights= mapper.readValue(responseBody, Flight[].class);
-		assertNotNull(flights);
+		FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
+		assertNotNull(flightResponse);
 		
 		// get ID
-		Long flightId = flights[0].getFlightId();
+		Long flightId = flightResponse.getArrivingFlights().get(0).getFlightId();
 		
 		String path = "/flights/" + flightId.toString();
 		

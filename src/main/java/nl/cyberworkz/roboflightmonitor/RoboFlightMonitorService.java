@@ -89,30 +89,41 @@ public class RoboFlightMonitorService {
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights();
-			 
+			
+			String nextUrl= null;
+			String previousUrl = null;
 			// get some more
-			Map<String, String> links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
-			String nextUrl = links.get("next");
-			responseEntity = restTemplate.exchange(nextUrl, HttpMethod.GET, entity, String.class);
+			if(responseEntity.getHeaders().get("link") != null) {
+				Map<String, String> links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
+				nextUrl = links.get("next");
+				responseEntity = restTemplate.exchange(nextUrl, HttpMethod.GET, entity, String.class);
+				
+				flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
+				flights.stream().forEach((flight) -> {
+					flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
+					flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
+				});
+				
+				
+				// get links for response
+				links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
+				nextUrl = links.get("next");
+				
+				previousUrl = links.get("prev");
+			}
 			
-			flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
-			flights.stream().forEach((flight) -> {
-				flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
-				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
-			});
-			
-			
-			// get links for response
-			links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
-			nextUrl = links.get("next");
-			
-			String previousUrl = links.get("prev");
 
 			
 			FlightResponse response = new FlightResponse();
 			response.setArrivingFlights(flights);
-			response.setNextLink(SchipholAPIUtils.stripCredentialsFromLink(nextUrl));
-			response.setPreviousLink(SchipholAPIUtils.stripCredentialsFromLink(previousUrl));
+			
+			if(nextUrl != null) {
+				response.setNextLink(SchipholAPIUtils.stripCredentialsFromLink(nextUrl));
+			}
+			
+			if(previousUrl != null) {
+				response.setPreviousLink(SchipholAPIUtils.stripCredentialsFromLink(previousUrl));
+			}
 			
 			return response;
 		} else {
