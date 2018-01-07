@@ -52,42 +52,5 @@ public class SchipholAPIUtils {
 
 		return linkMap;
 	}
-	
-	/**
-	 * Strip API credentials from link.
-	 * 
-	 * @param link
-	 * @return
-	 */
-	public static String stripCredentialsFromLink(String link) {
-		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(link);
-		
-		try {
-			URL rawURL = new URL(link);
-			String[] params = rawURL.getQuery().split("&");
-			
-			List<String> filteredParams = new ArrayList<>();
-			for (int i = 0; i < params.length; i++) {
-				if(!params[i].contains("app_key") && !params[i].contains("app_id")) {
-					filteredParams.add(params[i]);
-				}
-			}
-			
-			//build uri from filtered params
-			StringBuffer sb = new StringBuffer();
-			for (String param : filteredParams) {
-				sb.append(param);
-				if(!(filteredParams.indexOf(param) == filteredParams.size())) {
-					sb.append("&");
-				}
-			}
-			
-			uriBuilder.replaceQuery(sb.toString());
-		} catch (MalformedURLException e) {
-			LOG.error(link + "is not correctly \n" + e.getMessage());
-		}
-		
-		return uriBuilder.toUriString();
-	}
 
 }

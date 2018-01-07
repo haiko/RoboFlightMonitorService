@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class RoboFlightMonitorService {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
-				.queryParam("scheduletime", new DateTime().toString("HH:mm"))
+				.queryParam("scheduletime", new DateTime(DateTimeZone.forOffsetHours(1)).toString("HH:mm"))
 				.queryParam("sort", "+scheduletime")
 				.build().toUri();
 		
@@ -90,9 +91,10 @@ public class RoboFlightMonitorService {
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights();
 			
+			
+			// get some more
 			String nextUrl= null;
 			String previousUrl = null;
-			// get some more
 			if(responseEntity.getHeaders().get("link") != null) {
 				Map<String, String> links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
 				nextUrl = links.get("next");
@@ -103,13 +105,6 @@ public class RoboFlightMonitorService {
 					flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
 					flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
 				});
-				
-				
-				// get links for response
-				links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
-				nextUrl = links.get("next");
-				
-				previousUrl = links.get("prev");
 			}
 			
 
@@ -118,11 +113,11 @@ public class RoboFlightMonitorService {
 			response.setArrivingFlights(flights);
 			
 			if(nextUrl != null) {
-				response.setNextLink(SchipholAPIUtils.stripCredentialsFromLink(nextUrl));
+				response.setNextLink(buildLink(page + 2));
 			}
 			
-			if(previousUrl != null) {
-				response.setPreviousLink(SchipholAPIUtils.stripCredentialsFromLink(previousUrl));
+			if(previousUrl != null && page != 0) {
+				response.setPreviousLink(buildLink(page - 1));
 			}
 			
 			return response;
@@ -134,6 +129,15 @@ public class RoboFlightMonitorService {
 	}
 
 	
+
+	private String buildLink(int page) {
+		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
+		builder.path("flights");
+		builder.queryParam("page", page);
+		return builder.toUriString();
+	}
+
+
 
 	/**
 	 * Get Flight for given id.
