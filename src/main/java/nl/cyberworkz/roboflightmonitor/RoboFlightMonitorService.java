@@ -3,11 +3,8 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-
 import java.io.IOException;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.EntityLinks;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -121,7 +117,7 @@ public class RoboFlightMonitorService {
 				response.setNextLink(buildLink(page + 2));
 			}
 
-			if (previousUrl != null && page != 0) {
+			if (page != 0) {
 				response.setPreviousLink(buildLink(page - 1));
 			}
 
@@ -160,7 +156,12 @@ public class RoboFlightMonitorService {
 		ResponseEntity<Flight> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, Flight.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
-			return responseEntity.getBody();
+			
+			// add origin
+			Flight flight = responseEntity.getBody();
+			flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
+			
+			return flight;
 		} else if (responseEntity.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
 			throw new NotFoundException("flight: " + flightId + " not found");
 		} else {
