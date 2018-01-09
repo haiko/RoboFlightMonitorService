@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -63,12 +64,15 @@ public class RoboFlightMonitorService {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private DestinationRepository destinationRepo;
 
 	@Autowired
 	private ObjectMapper mapper;
+
+	@Autowired
+	private EntityLinks entityLinks;
 
 	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
@@ -77,9 +81,8 @@ public class RoboFlightMonitorService {
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
 				.queryParam("scheduletime", new DateTime(DateTimeZone.forOffsetHours(1)).toString("HH:mm"))
-				.queryParam("sort", "+scheduletime")
-				.build().toUri();
-		
+				.queryParam("sort", "+scheduletime").build().toUri();
+
 		LOG.debug("URI:" + uri.toString());
 
 		HttpHeaders headers = new HttpHeaders();
@@ -89,37 +92,39 @@ public class RoboFlightMonitorService {
 		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
-			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights();
-			
-			
+			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
+					.getFlights();
+
 			// get some more
-			String nextUrl= null;
+			String nextUrl = null;
 			String previousUrl = null;
-			if(responseEntity.getHeaders().get("link") != null) {
-				Map<String, String> links = SchipholAPIUtils.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
+			if (responseEntity.getHeaders().get("link") != null) {
+				Map<String, String> links = SchipholAPIUtils
+						.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
 				nextUrl = links.get("next");
 				responseEntity = restTemplate.exchange(nextUrl, HttpMethod.GET, entity, String.class);
-				
-				flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
-				flights.stream().forEach((flight) -> {
-					flight.add(linkTo(Flight.class).slash(flight.getFlightId()).withSelfRel());
-					flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
-				});
-			}
-			
 
-			
+				flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
+			}
+
+			// add Hypermedia links
+			flights.stream().forEach((flight) -> {
+				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
+				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
+			});
+
+			// build response
 			FlightResponse response = new FlightResponse();
 			response.setArrivingFlights(flights);
-			
-			if(nextUrl != null) {
+
+			if (nextUrl != null) {
 				response.setNextLink(buildLink(page + 2));
 			}
-			
-			if(previousUrl != null && page != 0) {
+
+			if (previousUrl != null && page != 0) {
 				response.setPreviousLink(buildLink(page - 1));
 			}
-			
+
 			return response;
 		} else {
 			LOG.error("request to airport API failed with code " + responseEntity.getStatusCodeValue());
@@ -128,16 +133,12 @@ public class RoboFlightMonitorService {
 		}
 	}
 
-	
-
 	private String buildLink(int page) {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
 		builder.path("flights");
 		builder.queryParam("page", page);
 		return builder.toUriString();
 	}
-
-
 
 	/**
 	 * Get Flight for given id.
@@ -149,7 +150,7 @@ public class RoboFlightMonitorService {
 	public Flight getFlight(Long flightId) throws NotFoundException {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).path("/").path(flightId.toString())
 				.queryParam("app_id", apiId).queryParam("app_key", apiKey).build().toUri();
-		
+
 		LOG.debug("URI:" + uri.toString());
 
 		HttpHeaders headers = new HttpHeaders();

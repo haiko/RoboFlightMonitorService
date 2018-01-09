@@ -3,14 +3,17 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -68,7 +71,11 @@ public class RoboFlightMonitorIntegrationTest {
 		assertNotNull(flightResponse.getArrivingFlights());
 		
 		// test for self-link
-		//assertEquals("self", flightResponse.getArrivingFlights().get(0).getLinks().get(0).getRel());
+		Flight aFlight = flightResponse.getArrivingFlights().get(0);
+		assertNotNull(aFlight.getLink(Link.REL_SELF));
+		
+		Link self = aFlight.getLink(Link.REL_SELF);
+		assertThat(self.getHref(), endsWith("/flights/" + aFlight.getFlightId()));
 	}
 	
 	@Test

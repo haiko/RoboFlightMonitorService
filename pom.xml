@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
-			<version>1.0.0.BUILD-SNAPSHOT</version>
+			<version>0.24.0.RELEASE</version>
 		</dependency>
 		<!-- HATEAOS needs this -->
 		<dependency>

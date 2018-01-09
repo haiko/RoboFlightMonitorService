@@ -11,6 +11,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.hateoas.config.EnableEntityLinks;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -34,6 +35,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 @EnableWebMvc
 @Configuration
+@EnableEntityLinks
 @ComponentScan(basePackages = {"nl.cyberworkz.roboflightmonitor"})
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig extends WebMvcConfigurerAdapter{
