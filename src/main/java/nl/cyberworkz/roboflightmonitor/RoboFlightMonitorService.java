@@ -76,7 +76,7 @@ public class RoboFlightMonitorService {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
-				.queryParam("scheduletime", new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(30).toString("HH:mm"))
+				.queryParam("scheduletime", new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15).toString("HH:mm"))
 				.queryParam("sort", "+scheduletime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
