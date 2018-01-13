@@ -9,6 +9,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -94,8 +96,30 @@ public class RoboFlightMonitorIntegrationTest {
 		FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
 		assertNotNull(flightResponse);
 		
-		// get ID
-		Long flightId = flightResponse.getArrivingFlights().get(0).getFlightId();
+		List<Flight> flights = flightResponse.getArrivingFlights();
+		for (Flight flight : flights) {
+			String flightId = flight.getFlightId();
+			String path = "/flights/" + flightId.toString();
+			
+			AwsProxyRequest requestForFlight = new AwsProxyRequestBuilder(path, "GET")
+					.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
+			AwsProxyResponse responseForFlight = handler.proxy(requestForFlight, lambdaContext);
+
+			assertNotNull(responseForFlight.getBody());
+			
+			Flight testFlight = mapper.readValue(responseForFlight.getBody(), Flight.class);
+			assertNotNull(testFlight);
+			assertEquals(flightId, testFlight.getFlightId());
+		}
+		
+		
+		 
+	}
+	
+	//@Test
+	public void TestFlight() throws IOException {
+	
+		String flightId = "123498779833032350"; 
 		
 		String path = "/flights/" + flightId.toString();
 		
@@ -110,5 +134,6 @@ public class RoboFlightMonitorIntegrationTest {
 		assertEquals(flightId, testFlight.getFlightId());
 		 
 	}
+
 
 }

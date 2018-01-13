@@ -68,9 +68,12 @@ public class RoboFlightMonitorController {
 	 * @param flightId
 	 * @return
 	 * @throws NotFoundException
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/{flightId}")
-	public ResponseEntity<Flight> getFlight(@PathVariable Long flightId) throws NotFoundException {
+	public ResponseEntity<Flight> getFlight(@PathVariable String flightId) throws NotFoundException, JsonParseException, JsonMappingException, IOException {
 		return new ResponseEntity<Flight>(service.getFlight(flightId), HttpStatus.OK);
 	}
 }

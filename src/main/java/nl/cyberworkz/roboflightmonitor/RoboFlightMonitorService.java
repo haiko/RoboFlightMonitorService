@@ -129,12 +129,6 @@ public class RoboFlightMonitorService {
 		}
 	}
 
-	private String buildLink(int page) {
-		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
-		builder.path("flights");
-		builder.queryParam("page", page);
-		return builder.toUriString();
-	}
 
 	/**
 	 * Get Flight for given id.
@@ -142,8 +136,11 @@ public class RoboFlightMonitorService {
 	 * @param flightId
 	 * @return Found Flight
 	 * @throws NotFoundException
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
 	 */
-	public Flight getFlight(Long flightId) throws NotFoundException {
+	public Flight getFlight(String flightId) throws NotFoundException, JsonParseException, JsonMappingException, IOException {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).path("/").path(flightId.toString())
 				.queryParam("app_id", apiId).queryParam("app_key", apiKey).build().toUri();
 
@@ -153,12 +150,13 @@ public class RoboFlightMonitorService {
 		headers.set("ResourceVersion", "v3");
 		HttpEntity<Object> entity = new HttpEntity(headers);
 
-		ResponseEntity<Flight> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, Flight.class);
+		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			
+			Flight flight = mapper.readValue(responseEntity.getBody(), Flight.class);
+			
 			// add origin
-			Flight flight = responseEntity.getBody();
 			flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
 			
 			return flight;
@@ -168,6 +166,13 @@ public class RoboFlightMonitorService {
 			throw new RuntimeException("failed to retrieve flight with id:" + flightId + "\n"
 					+ responseEntity.getStatusCodeValue() + " " + responseEntity.getStatusCode().getReasonPhrase());
 		}
+	}
+	
+	private String buildLink(int page) {
+		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
+		builder.path("flights");
+		builder.queryParam("page", page);
+		return builder.toUriString();
 	}
 
 }

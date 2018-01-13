@@ -65,11 +65,11 @@ public class RoboMonitorControllerTest {
 	}
 	
 	@Test
-	public void shouldPassFlightId() throws NotFoundException {
-		controller.getFlight(1234L);
+	public void shouldPassFlightId() throws NotFoundException, JsonParseException, JsonMappingException, IOException {
+		controller.getFlight("1234");
 		
 		//verify
-		verify(service).getFlight(Long.valueOf(1234));
+		verify(service).getFlight("1234");
 	}
 
 }

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Flight extends ResourceSupport{
 
 	@JsonProperty("id")
-	private Long flightId;
+	private String flightId;
 	
 	private String flightName;
 
@@ -157,11 +157,11 @@ public class Flight extends ResourceSupport{
 		this.flightState = flightState;
 	}
 
-	public Long getFlightId() {
+	public String getFlightId() {
 		return flightId;
 	}
 
-	public void setFlightId(Long flightId) {
+	public void setFlightId(String flightId) {
 		this.flightId = flightId;
 	}	
 }
