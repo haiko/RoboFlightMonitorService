@@ -110,30 +110,6 @@ public class RoboFlightMonitorIntegrationTest {
 			Flight testFlight = mapper.readValue(responseForFlight.getBody(), Flight.class);
 			assertNotNull(testFlight);
 			assertEquals(flightId, testFlight.getFlightId());
-		}
-		
-		
-		 
+		}		 
 	}
-	
-	//@Test
-	public void TestFlight() throws IOException {
-	
-		String flightId = "123498779833032350"; 
-		
-		String path = "/flights/" + flightId.toString();
-		
-		AwsProxyRequest requestForFlight = new AwsProxyRequestBuilder(path, "GET")
-				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
-		AwsProxyResponse responseForFlight = handler.proxy(requestForFlight, lambdaContext);
-
-		assertNotNull(responseForFlight.getBody());
-		
-		Flight testFlight = mapper.readValue(responseForFlight.getBody(), Flight.class);
-		assertNotNull(testFlight);
-		assertEquals(flightId, testFlight.getFlightId());
-		 
-	}
-
-
 }

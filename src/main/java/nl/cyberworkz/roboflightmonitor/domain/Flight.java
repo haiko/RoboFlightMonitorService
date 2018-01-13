@@ -27,8 +27,13 @@ public class Flight extends ResourceSupport{
 
 	@JsonFormat(pattern = "HH:mm:ss")
 	private DateTime scheduleTime;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private DateTime scheduleDateTime;
 
 	private String flightNumber;
+	
+	private boolean timeDeviation;
 	
 	private Route route;
 
@@ -163,5 +168,21 @@ public class Flight extends ResourceSupport{
 
 	public void setFlightId(String flightId) {
 		this.flightId = flightId;
+	}
+
+	public DateTime getScheduleDateTime() {
+		return scheduleDateTime;
+	}
+
+	public void setScheduleDateTime(DateTime scheduleDateTime) {
+		this.scheduleDateTime = scheduleDateTime;
+	}
+
+	public boolean isTimeDeviation() {
+		return timeDeviation;
+	}
+
+	public void setTimeDeviation(boolean timeDeviation) {
+		this.timeDeviation = timeDeviation;
 	}	
 }

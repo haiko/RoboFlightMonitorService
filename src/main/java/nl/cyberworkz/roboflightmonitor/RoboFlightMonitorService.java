@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.Period;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,8 @@ public class RoboFlightMonitorService {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
-				.queryParam("scheduletime", new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15).toString("HH:mm"))
+				.queryParam("scheduletime",
+						new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15).toString("HH:mm"))
 				.queryParam("sort", "+scheduletime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
@@ -103,10 +105,15 @@ public class RoboFlightMonitorService {
 				flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
 			}
 
-			// add Hypermedia links
+			// enrich Flight
 			flights.stream().forEach((flight) -> {
 				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
 				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
+				flight.setScheduleDateTime(flight.getScheduledDate()
+						.plus(new Period(flight.getScheduleTime().getHourOfDay(),
+								flight.getScheduleTime().getMinuteOfHour(),
+								flight.getScheduleTime().getSecondOfMinute(), 
+								flight.getScheduleTime().getMillisOfSecond())));
 			});
 
 			// build response
@@ -129,18 +136,18 @@ public class RoboFlightMonitorService {
 		}
 	}
 
-
 	/**
 	 * Get Flight for given id.
 	 * 
 	 * @param flightId
 	 * @return Found Flight
 	 * @throws NotFoundException
-	 * @throws IOException 
-	 * @throws JsonMappingException 
-	 * @throws JsonParseException 
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonParseException
 	 */
-	public Flight getFlight(String flightId) throws NotFoundException, JsonParseException, JsonMappingException, IOException {
+	public Flight getFlight(String flightId)
+			throws NotFoundException, JsonParseException, JsonMappingException, IOException {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).path("/").path(flightId.toString())
 				.queryParam("app_id", apiId).queryParam("app_key", apiKey).build().toUri();
 
@@ -153,12 +160,15 @@ public class RoboFlightMonitorService {
 		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
-			
+
 			Flight flight = mapper.readValue(responseEntity.getBody(), Flight.class);
-			
-			// add origin
+
 			flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
-			
+			flight.setScheduleDateTime(flight.getScheduledDate()
+					.plus(new Period(flight.getScheduleTime().getHourOfDay(),
+							flight.getScheduleTime().getMinuteOfHour(),
+							flight.getScheduleTime().getSecondOfMinute(), 
+							flight.getScheduleTime().getMillisOfSecond())));
 			return flight;
 		} else if (responseEntity.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
 			throw new NotFoundException("flight: " + flightId + " not found");
@@ -167,7 +177,7 @@ public class RoboFlightMonitorService {
 					+ responseEntity.getStatusCodeValue() + " " + responseEntity.getStatusCode().getReasonPhrase());
 		}
 	}
-	
+
 	private String buildLink(int page) {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
 		builder.path("flights");
