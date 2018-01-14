@@ -5,6 +5,7 @@ package nl.cyberworkz.roboflightmonitor;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -109,12 +110,10 @@ public class RoboFlightMonitorService {
 			flights.stream().forEach((flight) -> {
 				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
 				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
-				flight.setScheduleDateTime(flight.getScheduledDate()
-						.plus(new Period(flight.getScheduleTime().getHourOfDay(),
-								flight.getScheduleTime().getMinuteOfHour(),
-								flight.getScheduleTime().getSecondOfMinute(), 
-								flight.getScheduleTime().getMillisOfSecond())));
+				flight.deriveLandingTime();
 			});
+			
+			flights.sort(Comparator.comparing(Flight::getDerivedLandingTime));
 
 			// build response
 			FlightResponse response = new FlightResponse();
@@ -162,13 +161,9 @@ public class RoboFlightMonitorService {
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 
 			Flight flight = mapper.readValue(responseEntity.getBody(), Flight.class);
-
 			flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
-			flight.setScheduleDateTime(flight.getScheduledDate()
-					.plus(new Period(flight.getScheduleTime().getHourOfDay(),
-							flight.getScheduleTime().getMinuteOfHour(),
-							flight.getScheduleTime().getSecondOfMinute(), 
-							flight.getScheduleTime().getMillisOfSecond())));
+			flight.deriveLandingTime();
+			
 			return flight;
 		} else if (responseEntity.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
 			throw new NotFoundException("flight: " + flightId + " not found");
@@ -177,6 +172,7 @@ public class RoboFlightMonitorService {
 					+ responseEntity.getStatusCodeValue() + " " + responseEntity.getStatusCode().getReasonPhrase());
 		}
 	}
+
 
 	private String buildLink(int page) {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();

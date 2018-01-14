@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.Before;
@@ -73,6 +74,9 @@ public class RoboFlightMonitorServiceTest {
 		for (Flight aFlight : flights) {
 			LOG.debug("time: " + aFlight.getScheduleTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
 		}
+		
+		//test sorting
+		//TODO sometime
 	}
 
 }

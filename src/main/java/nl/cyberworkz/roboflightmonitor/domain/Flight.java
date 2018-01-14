@@ -1,6 +1,7 @@
 package nl.cyberworkz.roboflightmonitor.domain;
 
 import org.joda.time.DateTime;
+import org.joda.time.Period;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -42,6 +43,17 @@ public class Flight extends ResourceSupport{
 
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime estimatedLandingTime;
+	
+	// either scheduled or estimatedLandingTime
+	private DateTime derivedLandingTime;
+
+	public DateTime getDerivedLandingTime() {
+		return derivedLandingTime;
+	}
+
+	public void setDerivedLandingTime(DateTime derivedLandingTime) {
+		this.derivedLandingTime = derivedLandingTime;
+	}
 
 	public Route getRoute() {
 		return route;
@@ -71,6 +83,22 @@ public class Flight extends ResourceSupport{
 
 	@JsonProperty("publicFlightState")
 	private FlightState flightState;
+	
+	/**
+	 * Derive the landingtime on the basis if there is a deviation of the flight state.
+	 */
+	public void deriveLandingTime() {
+		this.setScheduleDateTime(this.scheduleDate
+				.plus(new Period(this.scheduleTime.getHourOfDay(),
+						this.scheduleTime.getMinuteOfHour(),
+						this.scheduleTime.getSecondOfMinute(), 
+						this.scheduleTime.getMillisOfSecond())));
+		
+		this.derivedLandingTime = this.scheduleDateTime;		
+		if(this.getFlightState().getStates().contains("EXP")) {
+			this.derivedLandingTime = this.estimatedLandingTime; 
+		}
+	}
 	
 
 	public FlightDirection getFlightDirection() {
