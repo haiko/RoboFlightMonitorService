@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
@@ -36,15 +37,19 @@ public class DestinationRepository {
 	
 	
 	public Destination getDestination(String iataCode) {
-		DynamoDB db = new DynamoDB(dynamoDBClient);
 		
-		Table table =  db.getTable(destinationTable);
-		GetItemSpec spec = new GetItemSpec().withPrimaryKey("iata", iataCode);
-		
-		Item outcome = table.getItem(spec);
-		if(outcome != null) {
-			return Destination.create(outcome.getString("iata"), outcome.getString("city"), outcome.getString("country"));
+		if(StringUtils.hasText(iataCode)) {
+			DynamoDB db = new DynamoDB(dynamoDBClient);
+			
+			Table table =  db.getTable(destinationTable);
+			GetItemSpec spec = new GetItemSpec().withPrimaryKey("iata", iataCode);
+			
+			Item outcome = table.getItem(spec);
+			if(outcome != null) {
+				return Destination.create(outcome.getString("iata"), outcome.getString("city"), outcome.getString("country"));
+			}
 		}
+		
 		return new Destination();
 	}
 
