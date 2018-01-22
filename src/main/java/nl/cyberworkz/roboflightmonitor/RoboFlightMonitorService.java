@@ -74,12 +74,14 @@ public class RoboFlightMonitorService {
 
 	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
+		
+		DateTime scheduleTime = new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15);
 
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
 				.queryParam("scheduletime",
-						new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15).toString("HH:mm"))
+						scheduleTime.toString("HH:mm"))
 				.queryParam("sort", "+scheduletime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
@@ -120,11 +122,11 @@ public class RoboFlightMonitorService {
 			response.setArrivingFlights(flights);
 
 			if (nextUrl != null) {
-				response.setNextLink(buildLink(page + 2));
+				response.setNextLink(buildLink(page + 2, scheduleTime));
 			}
 
 			if (page != 0) {
-				response.setPreviousLink(buildLink(page - 1));
+				response.setPreviousLink(buildLink(page - 1, scheduleTime));
 			}
 
 			return response;
@@ -174,10 +176,11 @@ public class RoboFlightMonitorService {
 	}
 
 
-	private String buildLink(int page) {
+	private String buildLink(int page, DateTime scheduleTime) {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
 		builder.path("flights");
 		builder.queryParam("page", page);
+		builder.queryParam("scheduletime", scheduleTime.toString("HH:mm"));
 		return builder.toUriString();
 	}
 
