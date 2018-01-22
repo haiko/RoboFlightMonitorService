@@ -8,6 +8,8 @@ import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,10 +60,27 @@ public class RoboMonitorControllerTest {
 	 */
 	@Test
 	public void shouldPassPageParamGetCurrentArrivingFlights() throws JsonParseException, JsonMappingException, BadRequestException, IOException {
-		controller.getCurrentArrivingFlights(9);
+		controller.getCurrentArrivingFlights(9, null);
 		
 		//verify
 		verify(service).getArrivingFlights(9);
+	}
+	
+	/**
+	 * Test method for {@link nl.cyberworkz.roboflightmonitor.RoboFlightMonitorController#getCurrentArrivingFlights(int)}.
+	 * @throws IOException 
+	 * @throws BadRequestException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
+	 */
+	@Test
+	public void shouldPassPageParamGetCurrentArrivingFlightsWithTime() throws JsonParseException, JsonMappingException, BadRequestException, IOException {
+		controller.getCurrentArrivingFlights(9, "12:00");
+		
+		DateTime time = DateTime.parse("12:00", DateTimeFormat.forPattern("HH:mm"));
+		
+		//verify
+		verify(service).getArrivingFlights(9, time);
 	}
 	
 	@Test

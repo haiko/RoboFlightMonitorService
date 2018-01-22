@@ -71,11 +71,17 @@ public class RoboFlightMonitorService {
 
 	@Autowired
 	private EntityLinks entityLinks;
-
+	
 	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-		
 		DateTime scheduleTime = new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15);
+		
+		return this.getArrivingFlights(page, scheduleTime);
+	}
+
+	public FlightResponse getArrivingFlights(int page, DateTime scheduleTime)
+			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
+		
 
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
@@ -96,18 +102,6 @@ public class RoboFlightMonitorService {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
 					.getFlights();
 
-			// get some more
-			String nextUrl = null;
-			String previousUrl = null;
-			if (responseEntity.getHeaders().get("link") != null) {
-				Map<String, String> links = SchipholAPIUtils
-						.getPagingLinks(responseEntity.getHeaders().get("link").get(0));
-				nextUrl = links.get("next");
-				responseEntity = restTemplate.exchange(nextUrl, HttpMethod.GET, entity, String.class);
-
-				flights.addAll(mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class).getFlights());
-			}
-
 			// enrich Flight
 			flights.stream().forEach((flight) -> {
 				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
@@ -120,11 +114,8 @@ public class RoboFlightMonitorService {
 			// build response
 			FlightResponse response = new FlightResponse();
 			response.setArrivingFlights(flights);
-
-			if (nextUrl != null) {
-				response.setNextLink(buildLink(page + 2, scheduleTime));
-			}
-
+			response.setNextLink(buildLink(page + 2, scheduleTime));
+		
 			if (page != 0) {
 				response.setPreviousLink(buildLink(page - 1, scheduleTime));
 			}

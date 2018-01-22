@@ -1,8 +1,9 @@
 package nl.cyberworkz.roboflightmonitor;
 
 import java.io.IOException;
-import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,14 +52,23 @@ public class RoboFlightMonitorController {
 	 * @throws IOException
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<FlightResponse> getCurrentArrivingFlights(@RequestParam(defaultValue = "0") int page)
+	public ResponseEntity<FlightResponse> getCurrentArrivingFlights(@RequestParam(defaultValue = "0") int page, @RequestParam(required=false) String scheduleTime)
 			throws JsonParseException, JsonMappingException, BadRequestException, IOException {
 
 		if (page > 20) {
 			throw new BadRequestException("page param is invalid!");
 		}
-
-		FlightResponse flightResponse = service.getArrivingFlights(page);
+		
+		FlightResponse flightResponse = null;
+		
+		if(scheduleTime ==null) {
+			flightResponse = service.getArrivingFlights(page);
+		}
+		else {
+			DateTime time = DateTime.parse(scheduleTime, DateTimeFormat.forPattern("HH:mm"));
+			flightResponse = service.getArrivingFlights(page, time);
+		}
+		
 		return new ResponseEntity<FlightResponse>(flightResponse, HttpStatus.OK);
 	}
 
