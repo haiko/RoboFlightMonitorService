@@ -5,6 +5,7 @@ package nl.cyberworkz.roboflightmonitor;
 
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
@@ -30,6 +31,8 @@ import com.amazonaws.serverless.proxy.internal.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder;
 import com.amazonaws.serverless.proxy.internal.testutils.MockLambdaContext;
 import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
@@ -111,5 +114,28 @@ public class RoboFlightMonitorIntegrationTest {
 			assertNotNull(testFlight);
 			assertEquals(flightId, testFlight.getFlightId());
 		}		 
+	}
+	
+	@Test
+	public void shouldNotContainFreightFlights() throws JsonParseException, JsonMappingException, IOException {
+		// when
+				AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
+						.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
+				AwsProxyResponse response = handler.proxy(request, lambdaContext);
+
+				// then
+				assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+				response = handler.proxy(request, lambdaContext);
+				String responseBody = response.getBody().toString();
+				
+				FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
+				assertNotNull(flightResponse);
+				
+				// check for freight service type
+				List<Flight> flights = flightResponse.getArrivingFlights();
+				assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("F")).count() > 0);
+				assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("H")).count() > 0);
+		
 	}
 }

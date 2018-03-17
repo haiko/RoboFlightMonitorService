@@ -55,7 +55,7 @@ public class RoboFlightMonitorController {
 	public ResponseEntity<FlightResponse> getCurrentArrivingFlights(@RequestParam(defaultValue = "0") int page, @RequestParam(required=false) String scheduleTime)
 			throws JsonParseException, JsonMappingException, BadRequestException, IOException {
 
-		if (page > 20) {
+		if (page > 30) {
 			throw new BadRequestException("page param is invalid!");
 		}
 		

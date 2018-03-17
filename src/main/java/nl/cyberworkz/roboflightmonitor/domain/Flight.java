@@ -44,6 +44,16 @@ public class Flight extends ResourceSupport{
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime estimatedLandingTime;
 	
+	private String serviceType;
+	
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
 	// either scheduled or estimatedLandingTime
 	private DateTime derivedLandingTime;
 
@@ -213,4 +223,6 @@ public class Flight extends ResourceSupport{
 	public void setTimeDeviation(boolean timeDeviation) {
 		this.timeDeviation = timeDeviation;
 	}	
+	
+	
 }

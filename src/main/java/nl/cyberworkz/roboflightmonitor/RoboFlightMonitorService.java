@@ -101,6 +101,9 @@ public class RoboFlightMonitorService {
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
 					.getFlights();
+			
+			// exclude flights on freight
+			flights.parallelStream().filter(f -> f.getServiceType().equalsIgnoreCase("J") || f.getServiceType().equalsIgnoreCase("C"));
 
 			// enrich Flight
 			flights.stream().forEach((flight) -> {
