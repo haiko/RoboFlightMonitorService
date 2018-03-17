@@ -46,6 +46,17 @@ public class Flight extends ResourceSupport{
 	
 	private String serviceType;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+	private DateTime expectedTimeOnBelt;
+	
+	public DateTime getExpectedTimeOnBelt() {
+		return expectedTimeOnBelt;
+	}
+
+	public void setExpectedTimeOnBelt(DateTime expectedTimeOnBelt) {
+		this.expectedTimeOnBelt = expectedTimeOnBelt;
+	}
+
 	public String getServiceType() {
 		return serviceType;
 	}
