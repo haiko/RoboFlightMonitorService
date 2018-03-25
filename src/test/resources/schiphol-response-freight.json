@@ -1,0 +1,1028 @@
+{
+    "flights": [
+        {
+            "id": 123997551255784530,
+            "flightName": "KL1262",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 1262,
+            "prefixIATA": "KL",
+            "prefixICAO": "KLM",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1262",
+            "codeshares": {
+                "codeshares": [
+                    "AF3180"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:18:14.000+02:00",
+            "actualLandingTime": "2018-03-25T21:18:14.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "NCE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "B16",
+            "baggageClaim": {
+                "belts": [
+                    "12"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:10:50.848+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZN",
+            "airlineCode": 100,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551538036444,
+            "flightName": "MNB724",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 724,
+            "prefixIATA": "MB",
+            "prefixICAO": "MNB",
+            "scheduleTime": "21:35:00",
+            "serviceType": "F",
+            "mainFlight": "MNB724",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T21:15:47.000+02:00",
+            "actualLandingTime": "2018-03-25T21:15:47.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "LND",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "LTN"
+                ]
+            },
+            "terminal": null,
+            "gate": null,
+            "baggageClaim": null,
+            "expectedTimeOnBelt": null,
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "ABY",
+                "iatasub": "ABY"
+            },
+            "aircraftRegistration": "TCMCG",
+            "airlineCode": 328,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997549873168306,
+            "flightName": "AM6541",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 6541,
+            "prefixIATA": "AM",
+            "prefixICAO": "AMX",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1834",
+            "codeshares": {
+                "codeshares": [
+                    "AM6541",
+                    "AR7803",
+                    "MF9974",
+                    "9W8772"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "actualLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "TXL"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A04",
+            "baggageClaim": {
+                "belts": [
+                    "9"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:25:33.990+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZM",
+            "airlineCode": 794,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997554764936828,
+            "flightName": "9W8772",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 8772,
+            "prefixIATA": "9W",
+            "prefixICAO": "JAI",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1834",
+            "codeshares": {
+                "codeshares": [
+                    "AM6541",
+                    "AR7803",
+                    "MF9974",
+                    "9W8772"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "actualLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "TXL"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A04",
+            "baggageClaim": {
+                "belts": [
+                    "9"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:25:33.990+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZM",
+            "airlineCode": 2481,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997549846615476,
+            "flightName": "AF3180",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 3180,
+            "prefixIATA": "AF",
+            "prefixICAO": "AFR",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1262",
+            "codeshares": {
+                "codeshares": [
+                    "AF3180"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:18:14.000+02:00",
+            "actualLandingTime": "2018-03-25T21:18:14.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "NCE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "B16",
+            "baggageClaim": {
+                "belts": [
+                    "12"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:10:50.848+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZN",
+            "airlineCode": 80,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551255800740,
+            "flightName": "KL1834",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 1834,
+            "prefixIATA": "KL",
+            "prefixICAO": "KLM",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1834",
+            "codeshares": {
+                "codeshares": [
+                    "AM6541",
+                    "AR7803",
+                    "MF9974",
+                    "9W8772"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "actualLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "TXL"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A04",
+            "baggageClaim": {
+                "belts": [
+                    "9"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:25:33.990+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZM",
+            "airlineCode": 100,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997549892019144,
+            "flightName": "AR7803",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 7803,
+            "prefixIATA": "AR",
+            "prefixICAO": null,
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1834",
+            "codeshares": {
+                "codeshares": [
+                    "AM6541",
+                    "AR7803",
+                    "MF9974",
+                    "9W8772"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "actualLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "TXL"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A04",
+            "baggageClaim": {
+                "belts": [
+                    "9"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:25:33.990+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZM",
+            "airlineCode": 4915,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551511500118,
+            "flightName": "MF9974",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 9974,
+            "prefixIATA": "MF",
+            "prefixICAO": "CXA",
+            "scheduleTime": "21:35:00",
+            "serviceType": "J",
+            "mainFlight": "KL1834",
+            "codeshares": {
+                "codeshares": [
+                    "AM6541",
+                    "AR7803",
+                    "MF9974",
+                    "9W8772"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "actualLandingTime": "2018-03-25T21:27:44.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "TXL"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A04",
+            "baggageClaim": {
+                "belts": [
+                    "9"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:25:33.990+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZM",
+            "airlineCode": 1551,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997550877721050,
+            "flightName": "HV6604",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 6604,
+            "prefixIATA": "HV",
+            "prefixICAO": "TRA",
+            "scheduleTime": "21:40:00",
+            "serviceType": "J",
+            "mainFlight": "HV6604",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T21:08:40.000+02:00",
+            "actualLandingTime": "2018-03-25T21:08:40.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "INN"
+                ]
+            },
+            "terminal": 1,
+            "gate": "D85",
+            "baggageClaim": {
+                "belts": [
+                    "6"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T21:36:33.000+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHHXE",
+            "airlineCode": 164,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997550585031592,
+            "flightName": "FR3006",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 3006,
+            "prefixIATA": "FR",
+            "prefixICAO": "RYR",
+            "scheduleTime": "21:40:00",
+            "serviceType": "J",
+            "mainFlight": "FR3006",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T22:00:46.000+02:00",
+            "actualLandingTime": null,
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIR",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "DUB"
+                ]
+            },
+            "terminal": 4,
+            "gate": null,
+            "baggageClaim": {
+                "belts": [
+                    "20A"
+                ]
+            },
+            "expectedTimeOnBelt": null,
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "EIGJI",
+            "airlineCode": 234,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551256611414,
+            "flightName": "KL9866",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 9866,
+            "prefixIATA": "KL",
+            "prefixICAO": "KLM",
+            "scheduleTime": "21:40:00",
+            "serviceType": "P",
+            "mainFlight": "KL9866",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T20:06:16.000+02:00",
+            "actualLandingTime": "2018-03-25T20:06:16.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "LND",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "XCR"
+                ]
+            },
+            "terminal": null,
+            "gate": null,
+            "baggageClaim": null,
+            "expectedTimeOnBelt": null,
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73W",
+                "iatasub": "73W"
+            },
+            "aircraftRegistration": "PHBGH",
+            "airlineCode": 100,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997553379861882,
+            "flightName": "ZXP052",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 52,
+            "prefixIATA": null,
+            "prefixICAO": "ZXP",
+            "scheduleTime": "21:40:00",
+            "serviceType": null,
+            "mainFlight": "ZXP052",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T21:38:00.000+02:00",
+            "actualLandingTime": "2018-03-25T21:49:00.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "LND"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "AMS"
+                ]
+            },
+            "terminal": null,
+            "gate": null,
+            "baggageClaim": null,
+            "expectedTimeOnBelt": null,
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": null,
+                "iatasub": null
+            },
+            "aircraftRegistration": "PHPXE",
+            "airlineCode": 148,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997550199379104,
+            "flightName": "CZ7742",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 7742,
+            "prefixIATA": "CZ",
+            "prefixICAO": "CSN",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1848",
+            "codeshares": {
+                "codeshares": [
+                    "AM6548",
+                    "CZ7742",
+                    "MF9828",
+                    "9W8788"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "actualLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "VIE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "C05",
+            "baggageClaim": {
+                "belts": [
+                    "10"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:20:44.367+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHBXM",
+            "airlineCode": 43,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551511497018,
+            "flightName": "MF9828",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 9828,
+            "prefixIATA": "MF",
+            "prefixICAO": "CXA",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1848",
+            "codeshares": {
+                "codeshares": [
+                    "AM6548",
+                    "CZ7742",
+                    "MF9828",
+                    "9W8788"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "actualLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "VIE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "C05",
+            "baggageClaim": {
+                "belts": [
+                    "10"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:20:44.367+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHBXM",
+            "airlineCode": 1551,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997554764936914,
+            "flightName": "9W8788",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 8788,
+            "prefixIATA": "9W",
+            "prefixICAO": "JAI",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1848",
+            "codeshares": {
+                "codeshares": [
+                    "AM6548",
+                    "CZ7742",
+                    "MF9828",
+                    "9W8788"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "actualLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "VIE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "C05",
+            "baggageClaim": {
+                "belts": [
+                    "10"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:20:44.367+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHBXM",
+            "airlineCode": 2481,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551255795342,
+            "flightName": "KL1646",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 1646,
+            "prefixIATA": "KL",
+            "prefixICAO": "KLM",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1646",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T21:20:08.000+02:00",
+            "actualLandingTime": "2018-03-25T21:20:08.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "FLR"
+                ]
+            },
+            "terminal": 2,
+            "gate": "B24",
+            "baggageClaim": {
+                "belts": [
+                    "11"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:10:20.244+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E90"
+            },
+            "aircraftRegistration": "PHEZX",
+            "airlineCode": 100,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551975357872,
+            "flightName": "PS0105",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 105,
+            "prefixIATA": "PS",
+            "prefixICAO": "AUI",
+            "scheduleTime": "21:45:00",
+            "serviceType": "H",
+            "mainFlight": "PS0105",
+            "codeshares": null,
+            "estimatedLandingTime": "2018-03-25T21:37:00.000+02:00",
+            "actualLandingTime": null,
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "SCH"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "KBP"
+                ]
+            },
+            "terminal": null,
+            "gate": null,
+            "baggageClaim": null,
+            "expectedTimeOnBelt": null,
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73C",
+                "iatasub": "73C"
+            },
+            "aircraftRegistration": null,
+            "airlineCode": 175,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997551255800822,
+            "flightName": "KL1848",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 1848,
+            "prefixIATA": "KL",
+            "prefixICAO": "KLM",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1848",
+            "codeshares": {
+                "codeshares": [
+                    "AM6548",
+                    "CZ7742",
+                    "MF9828",
+                    "9W8788"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "actualLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "VIE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "C05",
+            "baggageClaim": {
+                "belts": [
+                    "10"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:20:44.367+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHBXM",
+            "airlineCode": 100,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997549873168320,
+            "flightName": "AM6548",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 6548,
+            "prefixIATA": "AM",
+            "prefixICAO": "AMX",
+            "scheduleTime": "21:45:00",
+            "serviceType": "J",
+            "mainFlight": "KL1848",
+            "codeshares": {
+                "codeshares": [
+                    "AM6548",
+                    "CZ7742",
+                    "MF9828",
+                    "9W8788"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "actualLandingTime": "2018-03-25T21:29:48.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "FIB",
+                    "EXP"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "VIE"
+                ]
+            },
+            "terminal": 2,
+            "gate": "C05",
+            "baggageClaim": {
+                "belts": [
+                    "10"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:20:44.367+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "73H",
+                "iatasub": "73H"
+            },
+            "aircraftRegistration": "PHBXM",
+            "airlineCode": 794,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        },
+        {
+            "id": 123997550660617340,
+            "flightName": "GA9477",
+            "scheduleDate": "2018-03-25",
+            "flightDirection": "A",
+            "flightNumber": 9477,
+            "prefixIATA": "GA",
+            "prefixICAO": "GIA",
+            "scheduleTime": "21:50:00",
+            "serviceType": "J",
+            "mainFlight": "KL1082",
+            "codeshares": {
+                "codeshares": [
+                    "AM6649",
+                    "GA9477",
+                    "MF9308",
+                    "MK7803",
+                    "SU3212",
+                    "WX6020"
+                ]
+            },
+            "estimatedLandingTime": "2018-03-25T21:45:10.000+02:00",
+            "actualLandingTime": "2018-03-25T21:45:10.000+02:00",
+            "publicEstimatedOffBlockTime": null,
+            "actualOffBlockTime": null,
+            "publicFlightState": {
+                "flightStates": [
+                    "LND"
+                ]
+            },
+            "route": {
+                "destinations": [
+                    "MAN"
+                ]
+            },
+            "terminal": 2,
+            "gate": "A08",
+            "baggageClaim": {
+                "belts": [
+                    "13"
+                ]
+            },
+            "expectedTimeOnBelt": "2018-03-25T22:22:21.233+02:00",
+            "checkinAllocations": null,
+            "transferPositions": null,
+            "aircraftType": {
+                "iatamain": "EMJ",
+                "iatasub": "E75"
+            },
+            "aircraftRegistration": "PHEXW",
+            "airlineCode": 85,
+            "expectedTimeGateOpen": null,
+            "expectedTimeBoarding": null,
+            "expectedTimeGateClosing": null,
+            "schemaVersion": "3"
+        }
+    ],
+    "schemaVersion": "3"
+}

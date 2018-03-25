@@ -8,6 +8,7 @@ import java.net.URI;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -103,8 +104,14 @@ public class RoboFlightMonitorService {
 					.getFlights();
 			
 			// exclude flights on freight
-			flights.parallelStream().filter(f -> f.getServiceType().equalsIgnoreCase("J") || f.getServiceType().equalsIgnoreCase("C"));
-
+			flights = flights.parallelStream().filter(f -> {
+				
+				if(f.getServiceType() != null && (f.getServiceType().equalsIgnoreCase("J") || f.getServiceType().equalsIgnoreCase("C"))){
+					return true;
+				}
+				return false;
+			}).collect(Collectors.toList());
+			
 			// enrich Flight
 			flights.stream().forEach((flight) -> {
 				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
