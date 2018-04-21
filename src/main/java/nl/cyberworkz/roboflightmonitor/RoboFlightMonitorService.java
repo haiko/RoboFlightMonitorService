@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Period;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,23 +71,24 @@ public class RoboFlightMonitorService {
 
 	@Autowired
 	private EntityLinks entityLinks;
-	
+
 	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-		DateTime scheduleTime = new DateTime(DateTimeZone.forOffsetHours(1)).minusMinutes(15);
-		
+
+		TimeZone tz = TimeZone.getTimeZone("Europe/Amsterdam");
+		DateTimeZone dtz = DateTimeZone.forTimeZone(tz);
+
+		DateTime scheduleTime = new DateTime(dtz).minusMinutes(15);
+
 		return this.getArrivingFlights(page, scheduleTime);
 	}
 
 	public FlightResponse getArrivingFlights(int page, DateTime scheduleTime)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-		
 
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
 				.queryParam("app_key", apiKey).queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
-				.queryParam("page", page)
-				.queryParam("scheduletime",
-						scheduleTime.toString("HH:mm"))
+				.queryParam("page", page).queryParam("scheduletime", scheduleTime.toString("HH:mm"))
 				.queryParam("sort", "+scheduletime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
@@ -102,30 +102,31 @@ public class RoboFlightMonitorService {
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
 					.getFlights();
-			
+
 			// exclude flights on freight
 			flights = flights.parallelStream().filter(f -> {
-				
-				if(f.getServiceType() != null && (f.getServiceType().equalsIgnoreCase("J") || f.getServiceType().equalsIgnoreCase("C"))){
+
+				if (f.getServiceType() != null
+						&& (f.getServiceType().equalsIgnoreCase("J") || f.getServiceType().equalsIgnoreCase("C"))) {
 					return true;
 				}
 				return false;
 			}).collect(Collectors.toList());
-			
+
 			// enrich Flight
 			flights.stream().forEach((flight) -> {
 				flight.add(entityLinks.linkToSingleResource(Flight.class, flight.getFlightId()));
 				flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
 				flight.deriveLandingTime();
 			});
-			
+
 			flights.sort(Comparator.comparing(Flight::getDerivedLandingTime));
 
 			// build response
 			FlightResponse response = new FlightResponse();
 			response.setArrivingFlights(flights);
 			response.setNextLink(buildLink(page + 2, scheduleTime));
-		
+
 			if (page != 0) {
 				response.setPreviousLink(buildLink(page - 1, scheduleTime));
 			}
@@ -166,7 +167,7 @@ public class RoboFlightMonitorService {
 			Flight flight = mapper.readValue(responseEntity.getBody(), Flight.class);
 			flight.setOrigin(destinationRepo.getDestination(flight.getRoute().getDestinations().get(0)));
 			flight.deriveLandingTime();
-			
+
 			return flight;
 		} else if (responseEntity.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
 			throw new NotFoundException("flight: " + flightId + " not found");
@@ -175,7 +176,6 @@ public class RoboFlightMonitorService {
 					+ responseEntity.getStatusCodeValue() + " " + responseEntity.getStatusCode().getReasonPhrase());
 		}
 	}
-
 
 	private String buildLink(int page, DateTime scheduleTime) {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
