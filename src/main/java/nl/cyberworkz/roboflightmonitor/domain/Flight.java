@@ -119,7 +119,7 @@ public class Flight extends ResourceSupport {
 			DateTimeZone dtz = DateTimeZone.forTimeZone(tz);
 			DateTime dt = new DateTime(this.scheduleDate);
 			dt.withZone(dtz);
-			dt.plus(new Period(this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(),
+			dt = dt.plus(new Period(this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(),
 							this.scheduleTime.getSecondOfMinute(), this.scheduleTime.getMillisOfSecond()));
 			
 			this.scheduleDateTime = dt;
