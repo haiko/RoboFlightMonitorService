@@ -1,6 +1,9 @@
 package nl.cyberworkz.roboflightmonitor.domain;
 
+import java.util.TimeZone;
+
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -13,14 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author haiko
  *
  */
-public class Flight extends ResourceSupport{
+public class Flight extends ResourceSupport {
 
 	@JsonProperty("id")
 	private String flightId;
-	
+
 	private String flightName;
 
-	
 	private FlightDirection flightDirection;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -28,27 +30,27 @@ public class Flight extends ResourceSupport{
 
 	@JsonFormat(pattern = "HH:mm:ss")
 	private DateTime scheduleTime;
-	
+
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private DateTime scheduleDateTime;
 
 	private String flightNumber;
-	
+
 	private boolean timeDeviation;
-	
+
 	private Route route;
 
-	@JsonProperty(value="prefixIATA")
+	@JsonProperty(value = "prefixIATA")
 	private String iataCode;
 
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime estimatedLandingTime;
-	
+
 	private String serviceType;
-	
+
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime expectedTimeOnBelt;
-	
+
 	public DateTime getExpectedTimeOnBelt() {
 		return expectedTimeOnBelt;
 	}
@@ -86,14 +88,13 @@ public class Flight extends ResourceSupport{
 
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 	private DateTime actualLandingTime;
-	
+
 	private String terminal;
-	
+
 	private String gate;
-	
+
 	private Destination origin;
 
-	
 	public Destination getOrigin() {
 		return origin;
 	}
@@ -104,23 +105,27 @@ public class Flight extends ResourceSupport{
 
 	@JsonProperty("publicFlightState")
 	private FlightState flightState;
-	
+
 	/**
-	 * Derive the landingtime on the basis if there is a deviation of the flight state.
+	 * Derive the landingtime on the basis if there is a deviation of the flight
+	 * state.
 	 */
 	public void deriveLandingTime() {
-		this.setScheduleDateTime(this.scheduleDate
-				.plus(new Period(this.scheduleTime.getHourOfDay(),
-						this.scheduleTime.getMinuteOfHour(),
-						this.scheduleTime.getSecondOfMinute(), 
-						this.scheduleTime.getMillisOfSecond())));
-		
-		this.derivedLandingTime = this.scheduleDateTime;		
-		if(this.getFlightState().getStates().contains("EXP")) {
-			this.derivedLandingTime = this.estimatedLandingTime; 
+
+		if (this.getFlightState().getStates().contains("EXP")) {
+			this.derivedLandingTime = this.estimatedLandingTime;
+		} else {
+			TimeZone tz = TimeZone.getTimeZone("Europe/Amsterdam");
+			DateTimeZone dtz = DateTimeZone.forTimeZone(tz);
+			DateTime dt = new DateTime(this.scheduleDate);
+			dt.withZone(dtz);
+			dt.plus(new Period(this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(),
+							this.scheduleTime.getSecondOfMinute(), this.scheduleTime.getMillisOfSecond()));
+			
+			this.scheduleDateTime = dt;
+			this.derivedLandingTime = this.scheduleDateTime;
 		}
 	}
-	
 
 	public FlightDirection getFlightDirection() {
 		return flightDirection;
@@ -129,7 +134,6 @@ public class Flight extends ResourceSupport{
 	public void setFlightDirection(FlightDirection flightDirection) {
 		this.flightDirection = flightDirection;
 	}
-
 
 	public String getFlightNumber() {
 		return flightNumber;
@@ -233,7 +237,6 @@ public class Flight extends ResourceSupport{
 
 	public void setTimeDeviation(boolean timeDeviation) {
 		this.timeDeviation = timeDeviation;
-	}	
-	
-	
+	}
+
 }
