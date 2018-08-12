@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -72,7 +73,10 @@ public class RoboFlightMonitorServiceTest {
 		List<Flight> flights = response.getArrivingFlights();
 		
 		for (Flight aFlight : flights) {
-			LOG.debug("time: " + aFlight.getScheduleTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+			LOG.debug("schedule time: " + aFlight.getScheduleTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+			LOG.debug("estimated time: " + aFlight.getEstimatedLandingTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+			LOG.debug("derived time: " + aFlight.getDerivedLandingTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+
 		}
 		
 		//test sorting

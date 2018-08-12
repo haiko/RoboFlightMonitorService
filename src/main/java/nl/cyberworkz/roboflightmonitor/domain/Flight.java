@@ -43,7 +43,7 @@ public class Flight extends ResourceSupport {
 	@JsonProperty(value = "prefixIATA")
 	private String iataCode;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Berlin")
 	private DateTime estimatedLandingTime;
 
 	private String serviceType;
@@ -115,10 +115,7 @@ public class Flight extends ResourceSupport {
 		if (this.getFlightState().getStates().contains("EXP")) {
 			this.derivedLandingTime = this.estimatedLandingTime;
 		} else {
-			TimeZone tz = TimeZone.getTimeZone("Europe/Amsterdam");
-			DateTimeZone dtz = DateTimeZone.forTimeZone(tz);
 			DateTime dt = new DateTime(this.scheduleDate);
-			dt.withZone(dtz);
 			dt = dt.plus(new Period(this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(),
 							this.scheduleTime.getSecondOfMinute(), this.scheduleTime.getMillisOfSecond()));
 			
