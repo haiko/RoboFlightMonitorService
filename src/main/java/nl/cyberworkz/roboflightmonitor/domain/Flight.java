@@ -43,7 +43,7 @@ public class Flight extends ResourceSupport {
 	@JsonProperty(value = "prefixIATA")
 	private String iataCode;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Berlin")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Berlin")
 	private DateTime estimatedLandingTime;
 
 	private String serviceType;
