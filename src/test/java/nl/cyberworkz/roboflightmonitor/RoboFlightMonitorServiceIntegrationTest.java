@@ -32,7 +32,7 @@ import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 public class RoboFlightMonitorServiceIntegrationTest {
 	
 	private String URL = "https://api.schiphol.nl/public-flights/"
-			+ "flights?app_id=023d4662&app_key=99af4dac4c1b03bff8fcddc1160e69f4&flightdirection=A&page=0&scheduletime=21:31&sort=+scheduletime";
+			+ "flights?app_id=023d4662&app_key=99af4dac4c1b03bff8fcddc1160e69f4&flightdirection=A&page=0&includedelays=true&scheduletime=21:31&sort=+scheduletime";
 
 	private MockRestServiceServer mockServer;
 	
