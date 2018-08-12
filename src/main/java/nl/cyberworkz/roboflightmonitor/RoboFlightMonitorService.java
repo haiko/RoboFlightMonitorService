@@ -90,7 +90,6 @@ public class RoboFlightMonitorService {
 				.queryParam("app_key", apiKey)
 				.queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
-				.queryParam("includedelays", true)
 				.queryParam("scheduletime", scheduleTime.toString("HH:mm"))
 				.queryParam("sort", "+scheduletime").build().toUri();
 
