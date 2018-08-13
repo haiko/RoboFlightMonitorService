@@ -1,0 +1,1004 @@
+{
+  "flights": [
+    {
+      "id": 124981050230036652,
+      "flightName": "AHO676S",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 676,
+      "prefixIATA": null,
+      "prefixICAO": "AHO",
+      "scheduleTime": "21:00:00",
+      "serviceType": null,
+      "mainFlight": "AHO676S",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:26:02.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "AIR",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "CEQ"
+        ]
+      },
+      "terminal": null,
+      "gate": null,
+      "baggageClaim": null,
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "CNJ",
+        "iatasub": null
+      },
+      "aircraftRegistration": "DCAHO",
+      "airlineCode": 706,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981047077889094,
+      "flightName": "VY8306",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 8306,
+      "prefixIATA": "VY",
+      "prefixICAO": "VLG",
+      "scheduleTime": "21:00:00",
+      "serviceType": "J",
+      "mainFlight": "VY8306",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:38:35.000+02:00",
+      "actualLandingTime": "2018-08-12T20:38:46.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "BCN"
+        ]
+      },
+      "terminal": 1,
+      "gate": "B15",
+      "baggageClaim": {
+        "belts": [
+          "2"
+        ]
+      },
+      "expectedTimeOnBelt": "2018-08-12T21:16:59.945+02:00",
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "321",
+        "iatasub": "321"
+      },
+      "aircraftRegistration": "ECMHS",
+      "airlineCode": 263,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044580795136,
+      "flightName": "DY1258",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 1258,
+      "prefixIATA": "DY",
+      "prefixICAO": "NAX",
+      "scheduleTime": "21:00:00",
+      "serviceType": "J",
+      "mainFlight": "DY1258",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:53:38.000+02:00",
+      "actualLandingTime": "2018-08-12T20:53:22.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "OSL"
+        ]
+      },
+      "terminal": 3,
+      "gate": null,
+      "baggageClaim": {
+        "belts": [
+          "18B"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "73H",
+        "iatasub": "73H"
+      },
+      "aircraftRegistration": "LNDYE",
+      "airlineCode": 532,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981073289291966,
+      "flightName": "EZY2163",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 2163,
+      "prefixIATA": "U2",
+      "prefixICAO": "EZY",
+      "scheduleTime": "21:00:00",
+      "serviceType": "J",
+      "mainFlight": "EZY2163",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:54:46.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "SCH",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LTN"
+        ]
+      },
+      "terminal": 3,
+      "gate": "G05",
+      "baggageClaim": {
+        "belts": [
+          "18A"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "GEZOM",
+      "airlineCode": 64,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044214174196,
+      "flightName": "BA8457",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 8457,
+      "prefixIATA": "BA",
+      "prefixICAO": "BAW",
+      "scheduleTime": "21:00:00",
+      "serviceType": "J",
+      "mainFlight": "BA8457",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:49:01.000+02:00",
+      "actualLandingTime": "2018-08-12T20:49:15.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LCY"
+        ]
+      },
+      "terminal": 1,
+      "gate": "D24",
+      "baggageClaim": {
+        "belts": [
+          "4"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E70"
+      },
+      "aircraftRegistration": "GLCYI",
+      "airlineCode": 31,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981073289505538,
+      "flightName": "EZY4567",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 4567,
+      "prefixIATA": "U2",
+      "prefixICAO": "EZY",
+      "scheduleTime": "21:00:00",
+      "serviceType": "J",
+      "mainFlight": "EZY4567",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:40:12.000+02:00",
+      "actualLandingTime": "2018-08-12T20:40:22.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "SXF"
+        ]
+      },
+      "terminal": 4,
+      "gate": null,
+      "baggageClaim": {
+        "belts": [
+          "19B"
+        ]
+      },
+      "expectedTimeOnBelt": "2018-08-12T21:08:32.594+02:00",
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "OEIZB",
+      "airlineCode": 64,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981073289398522,
+      "flightName": "EZY3331",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 3331,
+      "prefixIATA": "U2",
+      "prefixICAO": "EZY",
+      "scheduleTime": "21:05:00",
+      "serviceType": "J",
+      "mainFlight": "EZY3331",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:44:34.000+02:00",
+      "actualLandingTime": "2018-08-12T20:44:42.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "VCE"
+        ]
+      },
+      "terminal": 4,
+      "gate": null,
+      "baggageClaim": {
+        "belts": [
+          "20B"
+        ]
+      },
+      "expectedTimeOnBelt": "2018-08-12T21:14:36.303+02:00",
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "OEIJR",
+      "airlineCode": 64,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044712002678,
+      "flightName": "EW1834",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 1834,
+      "prefixIATA": "EW",
+      "prefixICAO": "EWG",
+      "scheduleTime": "21:05:00",
+      "serviceType": "J",
+      "mainFlight": "EW1834",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T20:55:07.000+02:00",
+      "actualLandingTime": "2018-08-12T20:55:18.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "MUC"
+        ]
+      },
+      "terminal": 3,
+      "gate": "Z10",
+      "baggageClaim": {
+        "belts": [
+          "16B"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "DABNH",
+      "airlineCode": 133,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044165251598,
+      "flightName": "AY6750",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 6750,
+      "prefixIATA": "AY",
+      "prefixICAO": "FIN",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "BE4413",
+      "codeshares": {
+        "codeshares": [
+          "EY6083",
+          "AY6750",
+          "AZ4924"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:52:14.000+02:00",
+      "actualLandingTime": "2018-08-12T20:52:04.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "DSA"
+        ]
+      },
+      "terminal": 1,
+      "gate": "D29",
+      "baggageClaim": {
+        "belts": [
+          "6"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E75"
+      },
+      "aircraftRegistration": "GFBJJ",
+      "airlineCode": 78,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044043465146,
+      "flightName": "3O125",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 125,
+      "prefixIATA": "3O",
+      "prefixICAO": "MAC",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "3O125",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:06:52.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "FIR"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "FEZ"
+        ]
+      },
+      "terminal": 4,
+      "gate": "G06",
+      "baggageClaim": {
+        "belts": [
+          "22A"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "CNNMJ",
+      "airlineCode": 4891,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044228761956,
+      "flightName": "BE4413",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 4413,
+      "prefixIATA": "BE",
+      "prefixICAO": "BEE",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "BE4413",
+      "codeshares": {
+        "codeshares": [
+          "EY6083",
+          "AY6750",
+          "AZ4924"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:52:14.000+02:00",
+      "actualLandingTime": "2018-08-12T20:52:04.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "DSA"
+        ]
+      },
+      "terminal": 1,
+      "gate": "D29",
+      "baggageClaim": {
+        "belts": [
+          "6"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E75"
+      },
+      "aircraftRegistration": "GFBJJ",
+      "airlineCode": 502,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044043465150,
+      "flightName": "3O127",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 127,
+      "prefixIATA": "3O",
+      "prefixICAO": "MAC",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "3O127",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:11:21.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "FIR"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "TNG"
+        ]
+      },
+      "terminal": 3,
+      "gate": "G04",
+      "baggageClaim": {
+        "belts": [
+          "15A"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "CNNMH",
+      "airlineCode": 4891,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044719984316,
+      "flightName": "EY6083",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 6083,
+      "prefixIATA": "EY",
+      "prefixICAO": "ETD",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "BE4413",
+      "codeshares": {
+        "codeshares": [
+          "EY6083",
+          "AY6750",
+          "AZ4924"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:52:14.000+02:00",
+      "actualLandingTime": "2018-08-12T20:52:04.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "DSA"
+        ]
+      },
+      "terminal": 1,
+      "gate": "D29",
+      "baggageClaim": {
+        "belts": [
+          "6"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E75"
+      },
+      "aircraftRegistration": "GFBJJ",
+      "airlineCode": 274,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044168802570,
+      "flightName": "AZ4924",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 4924,
+      "prefixIATA": "AZ",
+      "prefixICAO": "AZA",
+      "scheduleTime": "21:10:00",
+      "serviceType": "J",
+      "mainFlight": "BE4413",
+      "codeshares": {
+        "codeshares": [
+          "EY6083",
+          "AY6750",
+          "AZ4924"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:52:14.000+02:00",
+      "actualLandingTime": "2018-08-12T20:52:04.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "DSA"
+        ]
+      },
+      "terminal": 1,
+      "gate": "D29",
+      "baggageClaim": {
+        "belts": [
+          "6"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E75"
+      },
+      "aircraftRegistration": "GFBJJ",
+      "airlineCode": 12,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981045502800496,
+      "flightName": "KL0994",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 994,
+      "prefixIATA": "KL",
+      "prefixICAO": "KLM",
+      "scheduleTime": "21:15:00",
+      "serviceType": "J",
+      "mainFlight": "KL0994",
+      "codeshares": {
+        "codeshares": [
+          "AF8477",
+          "KQ0994",
+          "WX6094"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:56:40.000+02:00",
+      "actualLandingTime": "2018-08-12T20:57:00.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LCY"
+        ]
+      },
+      "terminal": 2,
+      "gate": "A08",
+      "baggageClaim": {
+        "belts": [
+          "13"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E90"
+      },
+      "aircraftRegistration": "PHEXY",
+      "airlineCode": 100,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981044094228040,
+      "flightName": "AF8477",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 8477,
+      "prefixIATA": "AF",
+      "prefixICAO": "AFR",
+      "scheduleTime": "21:15:00",
+      "serviceType": "J",
+      "mainFlight": "KL0994",
+      "codeshares": {
+        "codeshares": [
+          "AF8477",
+          "KQ0994",
+          "WX6094"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:56:40.000+02:00",
+      "actualLandingTime": "2018-08-12T20:57:00.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LCY"
+        ]
+      },
+      "terminal": 2,
+      "gate": "A08",
+      "baggageClaim": {
+        "belts": [
+          "13"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E90"
+      },
+      "aircraftRegistration": "PHEXY",
+      "airlineCode": 80,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981045521542106,
+      "flightName": "KQ0994",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 994,
+      "prefixIATA": "KQ",
+      "prefixICAO": "KQA",
+      "scheduleTime": "21:15:00",
+      "serviceType": "J",
+      "mainFlight": "KL0994",
+      "codeshares": {
+        "codeshares": [
+          "AF8477",
+          "KQ0994",
+          "WX6094"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:56:40.000+02:00",
+      "actualLandingTime": "2018-08-12T20:57:00.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LCY"
+        ]
+      },
+      "terminal": 2,
+      "gate": "A08",
+      "baggageClaim": {
+        "belts": [
+          "13"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E90"
+      },
+      "aircraftRegistration": "PHEXY",
+      "airlineCode": 208,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981047212618522,
+      "flightName": "WX6094",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 6094,
+      "prefixIATA": "WX",
+      "prefixICAO": "BCY",
+      "scheduleTime": "21:15:00",
+      "serviceType": "J",
+      "mainFlight": "KL0994",
+      "codeshares": {
+        "codeshares": [
+          "AF8477",
+          "KQ0994",
+          "WX6094"
+        ]
+      },
+      "estimatedLandingTime": "2018-08-12T20:56:40.000+02:00",
+      "actualLandingTime": "2018-08-12T20:57:00.000+02:00",
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "LND",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "LCY"
+        ]
+      },
+      "terminal": 2,
+      "gate": "A08",
+      "baggageClaim": {
+        "belts": [
+          "13"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "EMJ",
+        "iatasub": "E90"
+      },
+      "aircraftRegistration": "PHEXY",
+      "airlineCode": 267,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981073289713696,
+      "flightName": "EZY6775",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 6775,
+      "prefixIATA": "U2",
+      "prefixICAO": "EZY",
+      "scheduleTime": "21:15:00",
+      "serviceType": "J",
+      "mainFlight": "EZY6775",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:01:36.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "FIR",
+          "EXP"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "BFS"
+        ]
+      },
+      "terminal": 3,
+      "gate": "G03",
+      "baggageClaim": {
+        "belts": [
+          "18A"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "GEZRP",
+      "airlineCode": 64,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    },
+    {
+      "id": 124981073289209608,
+      "flightName": "EZY1835",
+      "scheduleDate": "2018-08-12",
+      "flightDirection": "A",
+      "flightNumber": 1835,
+      "prefixIATA": "U2",
+      "prefixICAO": "EZY",
+      "scheduleTime": "21:20:00",
+      "serviceType": "J",
+      "mainFlight": "EZY1835",
+      "codeshares": null,
+      "estimatedLandingTime": "2018-08-12T21:25:26.000+02:00",
+      "actualLandingTime": null,
+      "publicEstimatedOffBlockTime": null,
+      "actualOffBlockTime": null,
+      "publicFlightState": {
+        "flightStates": [
+          "AIR"
+        ]
+      },
+      "route": {
+        "destinations": [
+          "MAN"
+        ]
+      },
+      "terminal": 4,
+      "gate": null,
+      "baggageClaim": {
+        "belts": [
+          "20B"
+        ]
+      },
+      "expectedTimeOnBelt": null,
+      "checkinAllocations": null,
+      "transferPositions": null,
+      "aircraftType": {
+        "iatamain": "320",
+        "iatasub": "32S"
+      },
+      "aircraftRegistration": "OEINH",
+      "airlineCode": 64,
+      "expectedTimeGateOpen": null,
+      "expectedTimeBoarding": null,
+      "expectedTimeGateClosing": null,
+      "schemaVersion": "3"
+    }
+  ],
+  "schemaVersion": "3"
+}

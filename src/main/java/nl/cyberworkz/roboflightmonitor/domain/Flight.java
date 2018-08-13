@@ -24,6 +24,9 @@ public class Flight extends ResourceSupport {
 	private String flightName;
 
 	private FlightDirection flightDirection;
+	
+	@JsonProperty("publicFlightState")
+	private FlightState flightState;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private DateTime scheduleDate;
@@ -31,7 +34,7 @@ public class Flight extends ResourceSupport {
 	@JsonFormat(pattern = "HH:mm:ss")
 	private DateTime scheduleTime;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	@JsonFormat(timezone = "Europe/Berlin")
 	private DateTime scheduleDateTime;
 
 	private String flightNumber;
@@ -43,13 +46,26 @@ public class Flight extends ResourceSupport {
 	@JsonProperty(value = "prefixIATA")
 	private String iataCode;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Berlin")
+	@JsonFormat(timezone = "Europe/Berlin")
 	private DateTime estimatedLandingTime;
+	
+	// either scheduled or estimatedLandingTime
+	@JsonFormat(timezone = "Europe/Berlin")
+	private DateTime derivedLandingTime;
 
 	private String serviceType;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+	@JsonFormat(timezone = "Europe/Berlin")
 	private DateTime expectedTimeOnBelt;
+	
+	@JsonFormat(timezone = "Europe/Berlin")
+	private DateTime actualLandingTime;
+
+	private String terminal;
+
+	private String gate;
+
+	private Destination origin;
 
 	public DateTime getExpectedTimeOnBelt() {
 		return expectedTimeOnBelt;
@@ -67,9 +83,6 @@ public class Flight extends ResourceSupport {
 		this.serviceType = serviceType;
 	}
 
-	// either scheduled or estimatedLandingTime
-	private DateTime derivedLandingTime;
-
 	public DateTime getDerivedLandingTime() {
 		return derivedLandingTime;
 	}
@@ -86,15 +99,6 @@ public class Flight extends ResourceSupport {
 		this.route = route;
 	}
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-	private DateTime actualLandingTime;
-
-	private String terminal;
-
-	private String gate;
-
-	private Destination origin;
-
 	public Destination getOrigin() {
 		return origin;
 	}
@@ -102,9 +106,6 @@ public class Flight extends ResourceSupport {
 	public void setOrigin(Destination origin) {
 		this.origin = origin;
 	}
-
-	@JsonProperty("publicFlightState")
-	private FlightState flightState;
 
 	/**
 	 * Derive the landingtime on the basis if there is a deviation of the flight
