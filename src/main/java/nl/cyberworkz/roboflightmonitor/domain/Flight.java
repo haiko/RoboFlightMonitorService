@@ -1,10 +1,15 @@
 package nl.cyberworkz.roboflightmonitor.domain;
 
+import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 public class Flight extends ResourceSupport {
+	
+	public Logger LOG = LoggerFactory.getLogger(Flight.class);
 
 	@JsonProperty("id")
 	private String flightId;
@@ -31,11 +38,8 @@ public class Flight extends ResourceSupport {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private DateTime scheduleDate;
 
-	@JsonFormat(pattern = "HH:mm:ss")
+	@JsonFormat(pattern = "HH:mm:ss", timezone= "Europe/Berlin")
 	private DateTime scheduleTime;
-
-	@JsonFormat(timezone = "Europe/Berlin")
-	private DateTime scheduleDateTime;
 
 	private String flightNumber;
 
@@ -51,7 +55,7 @@ public class Flight extends ResourceSupport {
 	
 	// either scheduled or estimatedLandingTime
 	@JsonFormat(timezone = "Europe/Berlin")
-	private DateTime derivedLandingTime;
+	private LocalDateTime derivedLandingTime;
 
 	private String serviceType;
 
@@ -83,11 +87,11 @@ public class Flight extends ResourceSupport {
 		this.serviceType = serviceType;
 	}
 
-	public DateTime getDerivedLandingTime() {
+	public LocalDateTime getDerivedLandingTime() {
 		return derivedLandingTime;
 	}
 
-	public void setDerivedLandingTime(DateTime derivedLandingTime) {
+	public void setDerivedLandingTime(LocalDateTime derivedLandingTime) {
 		this.derivedLandingTime = derivedLandingTime;
 	}
 
@@ -112,16 +116,13 @@ public class Flight extends ResourceSupport {
 	 * state.
 	 */
 	public void deriveLandingTime() {
-
-		if (this.getFlightState().getStates().contains("EXP")) {
-			this.derivedLandingTime = this.estimatedLandingTime;
+		if (this.getFlightState().getStates().contains("EXP")) {			
+			this.derivedLandingTime = LocalDateTime.of(this.estimatedLandingTime.getYear(), this.estimatedLandingTime.getMonthOfYear(), this.estimatedLandingTime.getDayOfMonth(),
+					this.estimatedLandingTime.getHourOfDay(), this.estimatedLandingTime.getMinuteOfHour(), this.estimatedLandingTime.getSecondOfMinute());
 		} else {
-			DateTime dt = new DateTime(this.scheduleDate);
-			dt = dt.plus(new Period(this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(),
-							this.scheduleTime.getSecondOfMinute(), this.scheduleTime.getMillisOfSecond()));
-			
-			this.scheduleDateTime = dt;
-			this.derivedLandingTime = this.scheduleDateTime;
+			this.derivedLandingTime = LocalDateTime.of(this.scheduleDate.getYear(), this.scheduleDate.getMonthOfYear(), this.scheduleDate.getDayOfMonth(),
+					this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(), this.scheduleTime.getSecondOfMinute());	
+			LOG.debug(this.derivedLandingTime.toString());
 		}
 	}
 
@@ -221,13 +222,6 @@ public class Flight extends ResourceSupport {
 		this.flightId = flightId;
 	}
 
-	public DateTime getScheduleDateTime() {
-		return scheduleDateTime;
-	}
-
-	public void setScheduleDateTime(DateTime scheduleDateTime) {
-		this.scheduleDateTime = scheduleDateTime;
-	}
 
 	public boolean isTimeDeviation() {
 		return timeDeviation;

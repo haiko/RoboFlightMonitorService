@@ -75,7 +75,7 @@ public class RoboFlightMonitorServiceTest {
 		for (Flight aFlight : flights) {
 			LOG.debug("schedule time: " + aFlight.getScheduleTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
 			LOG.debug("estimated time: " + aFlight.getEstimatedLandingTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
-			LOG.debug("derived time: " + aFlight.getDerivedLandingTime().toString("HH:mm") + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
+		    LOG.debug("derived time: " + aFlight.getDerivedLandingTime().toString() + "  from: " + aFlight.getOrigin().getCity() + "  number: " + aFlight.getFlightName());
 
 		}
 		

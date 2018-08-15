@@ -127,7 +127,7 @@ public class RoboFlightMonitorService {
 			// build response
 			FlightResponse response = new FlightResponse();
 			response.setArrivingFlights(flights);
-			response.setNextLink(buildLink(page + 2, scheduleTime));
+			response.setNextLink(buildLink(page + 1, scheduleTime));
 
 			if (page != 0) {
 				response.setPreviousLink(buildLink(page - 1, scheduleTime));

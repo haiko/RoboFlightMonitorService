@@ -46,7 +46,8 @@ public class DestinationRepository {
 			
 			Item outcome = table.getItem(spec);
 			if(outcome != null) {
-				return Destination.create(outcome.getString("iata"), outcome.getString("city"), outcome.getString("country"));
+				return Destination.create(outcome.getString("iata"), outcome.getString("city"), outcome.getString("country"), 
+						outcome.getString("airportName_NL"), outcome.getString("airportName_EN"));
 			}
 		}
 		
