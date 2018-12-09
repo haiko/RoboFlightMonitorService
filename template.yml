@@ -12,7 +12,7 @@ Resources:
   RoboFlightMonitorAPI:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: target/RoboFlightMonitorService-1.0.jar
+     # CodeUri: target/RoboFlightMonitorService-1.0.jar
       Handler: nl.cyberworkz.roboflightmonitor.StreamLambdaHandler
       Runtime: java8
       Environment:
