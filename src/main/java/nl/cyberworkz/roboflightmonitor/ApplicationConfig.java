@@ -5,12 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.hateoas.config.EnableEntityLinks;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -37,7 +32,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 @EnableWebMvc
 @Configuration
 @EnableEntityLinks
-@ComponentScan(basePackages = {"nl.cyberworkz.roboflightmonitor"})
+@Import(RoboFlightMonitorController.class)
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig extends WebMvcConfigurerAdapter{
 

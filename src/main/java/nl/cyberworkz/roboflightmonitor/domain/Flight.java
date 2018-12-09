@@ -22,8 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 public class Flight extends ResourceSupport {
-	
-	public Logger LOG = LoggerFactory.getLogger(Flight.class);
 
 	@JsonProperty("id")
 	private String flightId;
@@ -122,7 +120,6 @@ public class Flight extends ResourceSupport {
 		} else {
 			this.derivedLandingTime = LocalDateTime.of(this.scheduleDate.getYear(), this.scheduleDate.getMonthOfYear(), this.scheduleDate.getDayOfMonth(),
 					this.scheduleTime.getHourOfDay(), this.scheduleTime.getMinuteOfHour(), this.scheduleTime.getSecondOfMinute());	
-			LOG.debug(this.derivedLandingTime.toString());
 		}
 	}
 

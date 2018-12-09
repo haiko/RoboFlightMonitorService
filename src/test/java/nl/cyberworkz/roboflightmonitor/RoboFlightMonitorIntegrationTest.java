@@ -3,16 +3,16 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-
+import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder;
+import com.amazonaws.serverless.proxy.internal.testutils.MockLambdaContext;
+import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
+import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
+import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.cyberworkz.roboflightmonitor.domain.Flight;
+import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,27 +26,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.amazonaws.serverless.proxy.internal.model.AwsProxyRequest;
-import com.amazonaws.serverless.proxy.internal.model.AwsProxyResponse;
-import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder;
-import com.amazonaws.serverless.proxy.internal.testutils.MockLambdaContext;
-import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.List;
 
-import nl.cyberworkz.roboflightmonitor.domain.Flight;
-import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
+import static org.hamcrest.CoreMatchers.endsWith;
+import static org.junit.Assert.*;
 
 /**
  * @author haiko
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { ApplicationConfig.class, IntegrationTestConfig.class })
-@WebAppConfiguration
-@TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class })
-@TestPropertySource("classpath:application.properties")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = { ApplicationConfig.class, IntegrationTestConfig.class })
+//@WebAppConfiguration
+//@TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class })
+//@TestPropertySource("classpath:application.properties")
 public class RoboFlightMonitorIntegrationTest {
 
 	@Autowired

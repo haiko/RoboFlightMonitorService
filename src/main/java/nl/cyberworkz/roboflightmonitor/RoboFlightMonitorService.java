@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -44,6 +45,7 @@ import nl.cyberworkz.roboflightmonitor.exceptions.NotFoundException;
  *
  */
 @Service
+@Import(DestinationRepository.class)
 public class RoboFlightMonitorService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RoboFlightMonitorService.class);
