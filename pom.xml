@@ -92,7 +92,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
+			<version>2.6</version>
 		</dependency>
 
 
@@ -128,12 +128,7 @@
 			<artifactId>aws-lambda-java-log4j2</artifactId>
 			<version>1.1.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
-		</dependency>
+		
 
 		<!-- TEST -->
 		<dependency>
