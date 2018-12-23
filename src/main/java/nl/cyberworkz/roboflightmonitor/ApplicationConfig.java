@@ -43,7 +43,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
      * Add CORS support
      */
 	public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry
+                .addMapping("/**")
+                .allowedOrigins("http://localhost:8100");
     }
 
     @Bean
