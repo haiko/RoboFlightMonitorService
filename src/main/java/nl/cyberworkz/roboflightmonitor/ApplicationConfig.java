@@ -46,7 +46,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
         registry
                 .addMapping("/**")
                 .allowedOrigins("*")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowedMethods("*");
     }
 
     @Bean
