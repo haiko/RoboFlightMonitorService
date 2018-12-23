@@ -45,7 +45,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
 	public void addCorsMappings(CorsRegistry registry) {
         registry
                 .addMapping("/**")
-                .allowedOrigins("http://localhost:8100")
+                .allowedOrigins("*")
                 .allowedHeaders("*");
     }
 
