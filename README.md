@@ -19,3 +19,4 @@ This sample includes:
   Gateway.
 
 [![Known Vulnerabilities](https://snyk.io/test/github/haiko/RoboFlightMonitorService/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/haiko/RoboFlightMonitorService?targetFile=pom.xml)
+[![Build Status](https://travis-ci.org/haiko/RoboFlightMonitorService.svg?branch=master)](https://travis-ci.org/haiko/RoboFlightMonitorService)
