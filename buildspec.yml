@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Entering build phase...
       - echo Build started on `date`
-      - mvn package shade:shade
+      - mvn package shade:shade -DskipTests
       - mv target/RoboFlightMonitorService-1.0.jar .
       - unzip RoboFlightMonitorService-1.0.jar
       - rm -rf target src buildspec.yml pom.xml RoboFlightMonitorService-1.0.jar
