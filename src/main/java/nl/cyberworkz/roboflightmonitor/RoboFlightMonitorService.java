@@ -95,14 +95,7 @@ public class RoboFlightMonitorService {
 
 		LOG.debug("URI:" + uri.toString());
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("ResourceVersion", "v4");
-		headers.set("app_id", apiId);
-		headers.set("app_key", apiKey);
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<Object> entity = new HttpEntity(headers);
-
-		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, getHeaders(), String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
@@ -144,7 +137,16 @@ public class RoboFlightMonitorService {
 		}
 	}
 
-	/**
+    private HttpEntity<Object> getHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("ResourceVersion", "v4");
+        headers.set("app_id", apiId);
+        headers.set("app_key", apiKey);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        return (HttpEntity<Object>) new HttpEntity(headers);
+    }
+
+    /**
 	 * Get Flight for given id.
 	 * 
 	 * @param flightId
@@ -157,15 +159,11 @@ public class RoboFlightMonitorService {
 	public Flight getFlight(String flightId)
 			throws NotFoundException, JsonParseException, JsonMappingException, IOException {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).path("/").path(flightId.toString())
-				.queryParam("app_id", apiId).queryParam("app_key", apiKey).build().toUri();
+				.build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("ResourceVersion", "v3");
-		HttpEntity<Object> entity = new HttpEntity(headers);
-
-		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, getHeaders(), String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 
