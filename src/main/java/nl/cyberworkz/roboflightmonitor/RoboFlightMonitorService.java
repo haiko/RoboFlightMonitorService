@@ -90,14 +90,15 @@ public class RoboFlightMonitorService {
 				.queryParam("page", page)
 				.queryParam("scheduleDate", scheduleTime.toString("yyyy-MM-dd"))
 				.queryParam("scheduleTime", scheduleTime.toString("HH:mm"))
-                .queryParam("includeDelays", "true")
+                .queryParam("includeDelays", "false")
 				.queryParam("sort", "+scheduleTime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, getHeaders(), String.class);
 
-		if (responseEntity.getStatusCode().is2xxSuccessful()) {
+		if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody() != null) {
+
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
 					.getFlights();
 
