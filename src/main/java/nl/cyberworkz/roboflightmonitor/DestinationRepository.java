@@ -31,10 +31,9 @@ public class DestinationRepository {
 	
 	@Value("${destinations.tablename}")
 	private String destinationTable;
-	
+
 	@Autowired
 	private AmazonDynamoDB dynamoDBClient;	
-	
 	
 	public Destination getDestination(String iataCode) {
 		
