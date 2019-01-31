@@ -26,13 +26,13 @@ import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
-@WebAppConfiguration
+//@RunWith(SpringRunner.class)
+//@ContextConfiguration(classes = {ApplicationConfig.class})
+//@WebAppConfiguration
 public class RoboFlightMonitorServiceIntegrationTest {
 	
-	private String URL = "https://api.schiphol.nl/public-flights/flights?flightDirection=A&page=0&" +
-			"scheduleDate=2019-01-31&scheduleTime=21:31&includeDelays=false&sort=+scheduleTime";
+	private String URL = "https://api.schiphol.nl/public-flights/"
+			+ "flights?app_id=023d4662&app_key=99af4dac4c1b03bff8fcddc1160e69f4&flightdirection=A&page=0&scheduletime=21:31&sort=+scheduletime";
 
 	private MockRestServiceServer mockServer;
 	
@@ -52,7 +52,7 @@ public class RoboFlightMonitorServiceIntegrationTest {
 		mockServer.expect(ExpectedCount.once(), requestTo(URL)).
 		andRespond(withSuccess(IOUtils.toString(new ClassPathResource("schiphol-response-freight.json").getInputStream(), Charset.forName("UTF-8")), MediaType.APPLICATION_JSON));
 	
-		DateTime time = new DateTime().withDate(2019, 1, 31) .withTime(21, 31, 0, 0);
+		DateTime time = new DateTime().withTime(21, 31, 0, 0);
 		
 		FlightResponse response = service.getArrivingFlights(0, time);
 		
