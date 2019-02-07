@@ -1,22 +1,13 @@
-Welcome to the AWS CodeStar sample web service
+RoboFlightMonitor Microservice Lambda
 ==============================================
 
-This sample code helps get you started with a simple Java web service using
-AWS Lambda and Amazon API Gateway.
+Microservice for monitoring flight times. Deployed as serverless function on [AWS Lamda](https://aws.amazon.com/lambda/ behind the API Gateway using Spring and [aws serverless java container](https://github.com/awslabs/aws-serverless-java-container)
 
-What's Here
+Architecture
 -----------
 
-This sample includes:
-
-* README.md - this file
-* buildspec.yml - this file is used by AWS CodeBuild to build the web
-  service
-* pom.xml - this file is the Maven Project Object Model for the web service
-* src/ - this directory contains your Java service source files
-* template.yml - this file contains the Serverless Application Model (SAM) used
-  by AWS Cloudformation to deploy your application to AWS Lambda and Amazon API
-  Gateway.
+The overall architecture for this service:
+https://cloudcraft.co/view/669db1cf-f6da-4739-807c-484fa31ceaf7?key=RhZ4fpcDOdujke46j2-EkA&embed=true
 
 [![Known Vulnerabilities](https://snyk.io/test/github/haiko/RoboFlightMonitorService/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/haiko/RoboFlightMonitorService?targetFile=pom.xml)
 [![Build Status](https://travis-ci.org/haiko/RoboFlightMonitorService.svg?branch=master)](https://travis-ci.org/haiko/RoboFlightMonitorService)
