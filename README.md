@@ -1,7 +1,7 @@
 RoboFlightMonitor Microservice Lambda
 ==============================================
 
-Microservice for monitoring flight times. Deployed as serverless function on [AWS Lamda](https://aws.amazon.com/lambda/ behind the API Gateway using Spring and [aws serverless java container](https://github.com/awslabs/aws-serverless-java-container)
+Microservice for monitoring flight times. Deployed as serverless function on [AWS Lamda](https://aws.amazon.com/lambda/) behind the API Gateway using Spring and [aws serverless java container](https://github.com/awslabs/aws-serverless-java-container)
 
 Architecture
 -----------
