@@ -3,6 +3,7 @@
  */
 package nl.cyberworkz.roboflightmonitor;
 
+import com.amazonaws.serverless.proxy.internal.servlet.AwsServletContext;
 import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder;
 import com.amazonaws.serverless.proxy.internal.testutils.MockLambdaContext;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
@@ -13,12 +14,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.cyberworkz.roboflightmonitor.domain.Flight;
 import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.TestPropertySource;
@@ -53,6 +56,11 @@ public class RoboFlightMonitorIntegrationTest {
 	@Autowired
 	protected SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
 
+	@Before
+	public void clearServletContextCache() {
+		AwsServletContext.clearServletContextCache();
+	}
+
 	//@Test
 	public void shouldGetFlights() throws IOException {
 		// when
@@ -84,7 +92,7 @@ public class RoboFlightMonitorIntegrationTest {
 				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
 		AwsProxyResponse response = handler.proxy(request, lambdaContext);
 
-		// then
+		// thenIllegalStateException: GenericApplicationContext does not support multiple refresh attempts: just call 'refresh' once
 		assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
 		response = handler.proxy(request, lambdaContext);
@@ -110,7 +118,7 @@ public class RoboFlightMonitorIntegrationTest {
 		}		 
 	}
 	
-	//@Test
+//	@Test
 	public void shouldNotContainFreightFlights() throws JsonParseException, JsonMappingException, IOException {
 		// when
 				AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
@@ -133,6 +141,6 @@ public class RoboFlightMonitorIntegrationTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void noop() {}
 }

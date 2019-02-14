@@ -11,6 +11,7 @@ import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
 
 /**
@@ -34,6 +35,7 @@ public class IntegrationTestConfig {
     public SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> springLambdaContainerHandler() throws ContainerInitializationException {
         SpringLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler = SpringLambdaContainerHandler.getAwsProxyHandler(applicationContext);
         handler.setRefreshContext(false);
+        handler.initialize();
         return handler;
     }
 

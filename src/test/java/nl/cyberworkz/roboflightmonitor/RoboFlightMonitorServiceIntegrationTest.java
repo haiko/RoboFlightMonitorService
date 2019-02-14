@@ -26,13 +26,13 @@ import nl.cyberworkz.roboflightmonitor.domain.FlightResponse;
 import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 
 
-//@RunWith(SpringRunner.class)
-//@ContextConfiguration(classes = {ApplicationConfig.class})
-//@WebAppConfiguration
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {ApplicationConfig.class})
+@WebAppConfiguration
 public class RoboFlightMonitorServiceIntegrationTest {
 	
-	private String URL = "https://api.schiphol.nl/public-flights/"
-			+ "flights?app_id=023d4662&app_key=99af4dac4c1b03bff8fcddc1160e69f4&flightdirection=A&page=0&scheduletime=21:31&sort=+scheduletime";
+	private String URL = "https://api.schiphol.nl/public-flights/flights?"
+			+ "flightDirection=A&page=0&fromDateTime=2019-02-14T21:31:00&includeDelays=false&searchDateTimeField=scheduleDateTime&sort=+scheduleTime";
 
 	private MockRestServiceServer mockServer;
 	
