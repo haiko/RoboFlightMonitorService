@@ -35,15 +35,17 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.*;
 
+
+
 /**
  * @author haiko
  *
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = { ApplicationConfig.class, IntegrationTestConfig.class })
-//@WebAppConfiguration
-//@TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class })
-//@TestPropertySource("classpath:application.properties")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { ApplicationConfig.class, IntegrationTestConfig.class})
+@WebAppConfiguration
+@TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class })
+@TestPropertySource("classpath:application.properties")
 public class RoboFlightMonitorIntegrationTest {
 
 	@Autowired
@@ -61,7 +63,7 @@ public class RoboFlightMonitorIntegrationTest {
 		AwsServletContext.clearServletContextCache();
 	}
 
-	//@Test
+	@Test
 	public void shouldGetFlights() throws IOException {
 		// when
 		AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
@@ -85,14 +87,13 @@ public class RoboFlightMonitorIntegrationTest {
 		assertThat(self.getHref(), endsWith("/flights/" + aFlight.getFlightId()));
 	}
 	
-	//@Test
+	@Test
 	public void shouldGetSpecificFlight() throws IOException {
 		// when
 		AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
 				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
 		AwsProxyResponse response = handler.proxy(request, lambdaContext);
 
-		// thenIllegalStateException: GenericApplicationContext does not support multiple refresh attempts: just call 'refresh' once
 		assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
 		response = handler.proxy(request, lambdaContext);
@@ -118,7 +119,7 @@ public class RoboFlightMonitorIntegrationTest {
 		}		 
 	}
 	
-//	@Test
+	@Test
 	public void shouldNotContainFreightFlights() throws JsonParseException, JsonMappingException, IOException {
 		// when
 				AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
@@ -140,7 +141,4 @@ public class RoboFlightMonitorIntegrationTest {
 				assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("H")).count() > 0);
 		
 	}
-	
-	//@Test
-	public void noop() {}
 }
