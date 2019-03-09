@@ -67,8 +67,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         // set timezone
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        objectMapper.setDateFormat(dateFormat);
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//        objectMapper.setDateFormat(dateFormat);
         objectMapper.registerModule(new JodaModule());
 
         return objectMapper;

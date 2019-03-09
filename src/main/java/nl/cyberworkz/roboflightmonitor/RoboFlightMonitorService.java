@@ -5,6 +5,7 @@ package nl.cyberworkz.roboflightmonitor;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TimeZone;
@@ -18,11 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.EntityLinks;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -88,22 +85,21 @@ public class RoboFlightMonitorService {
 	public FlightResponse getArrivingFlights(int page, DateTime scheduleTime)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
 
-		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).queryParam("app_id", apiId)
-				.queryParam("app_key", apiKey)
-				.queryParam("flightdirection", FlightDirection.ARRIVING.getDirection())
+		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource)
+				.queryParam("flightDirection", FlightDirection.ARRIVING.getDirection())
 				.queryParam("page", page)
-				.queryParam("scheduletime", scheduleTime.toString("HH:mm"))
-				.queryParam("sort", "+scheduletime").build().toUri();
+				.queryParam("fromDateTime", scheduleTime.toString("yyyy-MM-dd").concat("T").
+						concat(scheduleTime.toString("HH:mm:ss")))
+                .queryParam("includeDelays", "false")
+				.queryParam("searchDateTimeField", "scheduleDateTime")
+				.queryParam("sort", "+scheduleTime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("ResourceVersion", "v3");
-		HttpEntity<Object> entity = new HttpEntity(headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, getHeaders(), String.class);
 
-		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+		if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody() != null) {
 
-		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 			List<Flight> flights = mapper.readValue(responseEntity.getBody(), SchipholFlightsResponse.class)
 					.getFlights();
 
@@ -143,7 +139,16 @@ public class RoboFlightMonitorService {
 		}
 	}
 
-	/**
+    private HttpEntity<Object> getHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("ResourceVersion", "v4");
+        headers.set("app_id", apiId);
+        headers.set("app_key", apiKey);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        return (HttpEntity<Object>) new HttpEntity(headers);
+    }
+
+    /**
 	 * Get Flight for given id.
 	 * 
 	 * @param flightId
@@ -156,15 +161,11 @@ public class RoboFlightMonitorService {
 	public Flight getFlight(String flightId)
 			throws NotFoundException, JsonParseException, JsonMappingException, IOException {
 		URI uri = UriComponentsBuilder.fromUriString(baseUrl + flightsResource).path("/").path(flightId.toString())
-				.queryParam("app_id", apiId).queryParam("app_key", apiKey).build().toUri();
+				.build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("ResourceVersion", "v3");
-		HttpEntity<Object> entity = new HttpEntity(headers);
-
-		ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, getHeaders(), String.class);
 
 		if (responseEntity.getStatusCode().is2xxSuccessful()) {
 

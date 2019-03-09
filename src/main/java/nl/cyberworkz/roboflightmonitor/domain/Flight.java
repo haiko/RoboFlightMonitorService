@@ -3,6 +3,7 @@ package nl.cyberworkz.roboflightmonitor.domain;
 import java.time.LocalDateTime;
 import java.util.TimeZone;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author haiko
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Flight extends ResourceSupport {
 
 	@JsonProperty("id")
@@ -57,7 +59,7 @@ public class Flight extends ResourceSupport {
 
 	private String serviceType;
 
-	@JsonFormat(timezone = "Europe/Berlin")
+    @JsonFormat(timezone = "Europe/Berlin")
 	private DateTime expectedTimeOnBelt;
 	
 	@JsonFormat(timezone = "Europe/Berlin")
