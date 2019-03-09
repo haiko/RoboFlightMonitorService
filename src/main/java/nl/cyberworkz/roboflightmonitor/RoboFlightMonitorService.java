@@ -92,7 +92,7 @@ public class RoboFlightMonitorService {
 						concat(scheduleTime.toString("HH:mm:ss")))
                 .queryParam("includeDelays", "false")
 				.queryParam("searchDateTimeField", "estimatedLandingTime")
-				.queryParam("sort", "+estimatedLanding").build().toUri();
+				.queryParam("sort", "+estimatedLandingTime").build().toUri();
 
 		LOG.debug("URI:" + uri.toString());
 
