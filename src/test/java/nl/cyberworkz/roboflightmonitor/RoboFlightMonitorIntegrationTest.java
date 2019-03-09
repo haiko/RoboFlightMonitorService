@@ -122,23 +122,23 @@ public class RoboFlightMonitorIntegrationTest {
 	@Test
 	public void shouldNotContainFreightFlights() throws JsonParseException, JsonMappingException, IOException {
 		// when
-				AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
-						.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
-				AwsProxyResponse response = handler.proxy(request, lambdaContext);
+		AwsProxyRequest request = new AwsProxyRequestBuilder("/flights", "GET")
+				.header("Content-Type", MediaType.APPLICATION_JSON_VALUE).build();
+		AwsProxyResponse response = handler.proxy(request, lambdaContext);
 
-				// then
-				assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+		// then
+		assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
-				response = handler.proxy(request, lambdaContext);
-				String responseBody = response.getBody().toString();
-				
-				FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
-				assertNotNull(flightResponse);
-				
-				// check for freight service type
-				List<Flight> flights = flightResponse.getArrivingFlights();
-				assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("F")).count() > 0);
-				assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("H")).count() > 0);
-		
+		response = handler.proxy(request, lambdaContext);
+		String responseBody = response.getBody().toString();
+
+		FlightResponse flightResponse= mapper.readValue(responseBody, FlightResponse.class);
+		assertNotNull(flightResponse);
+
+		// check for freight service type
+		List<Flight> flights = flightResponse.getArrivingFlights();
+		assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("F")).count() > 0);
+		assertFalse(flights.stream().filter(f -> f.getServiceType().equalsIgnoreCase("H")).count() > 0);
+
 	}
 }
