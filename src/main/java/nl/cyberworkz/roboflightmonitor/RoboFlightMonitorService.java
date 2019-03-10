@@ -71,11 +71,17 @@ public class RoboFlightMonitorService {
 	@Autowired
 	private EntityLinks entityLinks;
 
+	private TimeZone tz;
+
+	private DateTimeZone dtz;
+
+	public RoboFlightMonitorService() {
+		tz = TimeZone.getTimeZone("Europe/Amsterdam");
+		dtz = DateTimeZone.forTimeZone(tz);
+	}
+
 	public FlightResponse getArrivingFlights(int page)
 			throws BadRequestException, JsonParseException, JsonMappingException, IOException {
-
-		TimeZone tz = TimeZone.getTimeZone("Europe/Amsterdam");
-		DateTimeZone dtz = DateTimeZone.forTimeZone(tz);
 
 		DateTime scheduleTime = new DateTime(dtz).minusMinutes(15);
 
@@ -186,7 +192,7 @@ public class RoboFlightMonitorService {
 		UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
 		builder.path("flights");
 		builder.queryParam("page", page);
-		builder.queryParam("scheduletime", scheduleTime.toString("HH:mm"));
+		builder.queryParam("scheduleTime", scheduleTime.toString("yyyy-MM-dd'T'HH:mm"));
 		return builder.toUriString();
 	}
 

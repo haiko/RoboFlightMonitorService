@@ -32,7 +32,7 @@ import nl.cyberworkz.roboflightmonitor.exceptions.BadRequestException;
 public class RoboFlightMonitorServiceIntegrationTest {
 	
 	private String URL = "https://api.schiphol.nl/public-flights/flights?"
-			+ "flightDirection=A&page=0&fromDateTime=" + new DateTime().toString("yyyy-MM-dd") + "T21:31:00&includeDelays=false&searchDateTimeField=scheduleDateTime&sort=+scheduleTime";
+			+ "flightDirection=A&page=0&fromDateTime=" + new DateTime().toString("yyyy-MM-dd") + "T21:31:00&includeDelays=false&searchDateTimeField=estimatedLandingTime&sort=+estimatedLandingTime";
 
 	private MockRestServiceServer mockServer;
 	
