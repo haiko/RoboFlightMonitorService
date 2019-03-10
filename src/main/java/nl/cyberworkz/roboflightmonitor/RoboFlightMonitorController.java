@@ -63,7 +63,7 @@ public class RoboFlightMonitorController {
 		if (scheduleTime == null) {
 			flightResponse = service.getArrivingFlights(page);
 		} else {
-			DateTime time = DateTime.parse(scheduleTime, DateTimeFormat.forPattern("HH:mm"));
+			DateTime time = DateTime.parse(scheduleTime, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm"));
 			flightResponse = service.getArrivingFlights(page, time);
 		}
 
