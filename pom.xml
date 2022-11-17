@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>org.springframework.plugin</groupId>
 			<artifactId>spring-plugin-core</artifactId>
-			<version>1.2.0.RELEASE</version>
+			<version>3.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -164,8 +164,7 @@
 						<configuration>
 							<createDependencyReducedPom>false</createDependencyReducedPom>
 							<transformers>
-								<transformer
-										implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
+								<transformer implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
 								</transformer>
 							</transformers>
 						</configuration>
