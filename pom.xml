@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
-			<version>0.24.0.RELEASE</version>
+			<version>2.1.4</version>
 		</dependency>
 		<!-- HATEAOS needs this -->
 		<dependency>
@@ -164,8 +164,7 @@
 						<configuration>
 							<createDependencyReducedPom>false</createDependencyReducedPom>
 							<transformers>
-								<transformer
-										implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
+								<transformer implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
 								</transformer>
 							</transformers>
 						</configuration>
